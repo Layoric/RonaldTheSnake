@@ -82,6 +82,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="ScreenManager\BackgroundScreen.cs" />
+    <Compile Include="ScreenManager\GameOverBox.cs" />
     <Compile Include="ScreenManager\GameScreen.cs" />
     <Compile Include="ScreenManager\InputState.cs" />
     <Compile Include="ScreenManager\MenuEntry.cs" />
@@ -107,6 +108,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\XTiled\XTiled [Windows].csproj">
+      <Project>{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}</Project>
+      <Name>XTiled [Windows]</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RonaldTheSnakeContent\RonaldTheSnakeContent.contentproj">
       <Name>RonaldTheSnakeContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>

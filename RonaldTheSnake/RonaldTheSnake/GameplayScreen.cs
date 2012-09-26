@@ -73,15 +73,12 @@ namespace RonaldTheSnake
             }
             if (world.worldReset)
             {
-                //if (msg == null)
-                //{
-                //    msg = new MessageBoxScreen("You died!!");
-                //    ScreenManager.AddScreen(msg, ControllingPlayer);
-                //}
-                //else
-                //{
+                if (msg == null)
+                    msg = new GameOverBox("You died!!");
 
-                //}
+                ScreenManager.AddScreen(msg, ControllingPlayer);
+                world.worldReset = false;
+                
             }
 
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
@@ -125,21 +122,25 @@ namespace RonaldTheSnake
 
             if (input.IsNewKeyPress(Keys.Left, ControllingPlayer, out playerIndex))
             {
-                world.Players[(int)playerIndex].Direction = SnakeDirection.Left;
+                if(world.Players[(int)playerIndex].Body.Blocks.First().Direction != SnakeDirection.Right)
+                    world.Players[(int)playerIndex].Direction = SnakeDirection.Left;
             }
 
             if (input.IsNewKeyPress(Keys.Up, ControllingPlayer, out playerIndex))
             {
+                if(world.Players[(int)playerIndex].Body.Blocks.First().Direction != SnakeDirection.Down)
                 world.Players[(int)playerIndex].Direction = SnakeDirection.Up;
             }
 
             if (input.IsNewKeyPress(Keys.Right, ControllingPlayer, out playerIndex))
             {
+                if(world.Players[(int)playerIndex].Body.Blocks.First().Direction != SnakeDirection.Left)
                 world.Players[(int)playerIndex].Direction = SnakeDirection.Right;
             }
 
             if (input.IsNewKeyPress(Keys.Down, ControllingPlayer, out playerIndex))
             {
+                if(world.Players[(int)playerIndex].Body.Blocks.First().Direction != SnakeDirection.Up)
                 world.Players[(int)playerIndex].Direction = SnakeDirection.Down;
             }
         }

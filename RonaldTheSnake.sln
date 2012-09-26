@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RonaldTheSnake", "RonaldTheSnake\RonaldTheSnake\RonaldTheSnake.csproj", "{31C4EFCB-9322-4E91-9596-9CECBFAB9B89}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "RonaldTheSnakeContent", "RonaldTheSnake\RonaldTheSnakeContent\RonaldTheSnakeContent.contentproj", "{E06F890B-D631-4E83-84B0-72EFF43914A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RonaldTheSnakeContent", "RonaldTheSnake\RonaldTheSnakeContent\RonaldTheSnakeContent.contentproj", "{E06F890B-D631-4E83-84B0-72EFF43914A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTiledExtensions", "XTiledExtensions\XTiledExtensions.csproj", "{AC3FAE00-C94C-4FE3-969F-232241195224}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTiled [Windows]", "XTiled\XTiled [Windows].csproj", "{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +21,14 @@ Global
 		{31C4EFCB-9322-4E91-9596-9CECBFAB9B89}.Release|x86.Build.0 = Release|x86
 		{E06F890B-D631-4E83-84B0-72EFF43914A2}.Debug|x86.ActiveCfg = Debug|x86
 		{E06F890B-D631-4E83-84B0-72EFF43914A2}.Release|x86.ActiveCfg = Release|x86
+		{AC3FAE00-C94C-4FE3-969F-232241195224}.Debug|x86.ActiveCfg = Debug|x86
+		{AC3FAE00-C94C-4FE3-969F-232241195224}.Debug|x86.Build.0 = Debug|x86
+		{AC3FAE00-C94C-4FE3-969F-232241195224}.Release|x86.ActiveCfg = Release|x86
+		{AC3FAE00-C94C-4FE3-969F-232241195224}.Release|x86.Build.0 = Release|x86
+		{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}.Debug|x86.ActiveCfg = Debug|x86
+		{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}.Debug|x86.Build.0 = Debug|x86
+		{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}.Release|x86.ActiveCfg = Release|x86
+		{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

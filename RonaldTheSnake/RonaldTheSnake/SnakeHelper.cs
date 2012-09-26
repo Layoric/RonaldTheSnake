@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using RonaldTheSnake.SnakeObjects;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace RonaldTheSnake
 {
@@ -35,9 +36,9 @@ namespace RonaldTheSnake
             return result;
         }
 
-        public static Vector2 MapToScreen(Point point)
+        public static Vector2 MapToScreen(Point point, Texture2D texture)
         {
-            Vector2 result = new Vector2((point.X * 16) + 32, (point.Y * 16) + 32);
+            Vector2 result = new Vector2((point.X * 32) + (texture.Bounds.Width / 2), (point.Y * 32) + (texture.Bounds.Height / 2));
             return result;
         }
 

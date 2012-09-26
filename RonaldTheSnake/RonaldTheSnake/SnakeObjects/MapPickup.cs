@@ -10,6 +10,8 @@ namespace RonaldTheSnake.SnakeObjects
     {
         public int PointsValue = 0;
 
+        public Point Position { get; set; }
+
         public MapPickup(int pointVal)
         {
             PointsValue = pointVal;

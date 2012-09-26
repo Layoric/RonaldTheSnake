@@ -1,0 +1,47 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   RonaldTheSnake.sln
+#	new file:   RonaldTheSnake.suo
+#	modified:   RonaldTheSnake/RonaldTheSnake/Game1.cs
+#	modified:   RonaldTheSnake/RonaldTheSnake/GameplayScreen.cs
+#	modified:   RonaldTheSnake/RonaldTheSnake/RonaldTheSnake.csproj
+#	modified:   RonaldTheSnake/RonaldTheSnake/RonaldTheSnake.csproj.Debug.cachefile
+#	new file:   RonaldTheSnake/RonaldTheSnake/ScreenManager/GameOverBox.cs
+#	modified:   RonaldTheSnake/RonaldTheSnake/SnakeHelper.cs
+#	modified:   RonaldTheSnake/RonaldTheSnake/SnakeObjects/MapPickup.cs
+#	modified:   RonaldTheSnake/RonaldTheSnake/SnakeObjects/SnakePlayer.cs
+#	modified:   RonaldTheSnake/RonaldTheSnake/World/GridMap.cs
+#	modified:   RonaldTheSnake/RonaldTheSnake/World/SnakeWorld.cs
+#	modified:   RonaldTheSnake/RonaldTheSnakeContent/RonaldTheSnakeContent.contentproj
+#	new file:   RonaldTheSnake/RonaldTheSnakeContent/desert.png
+#	modified:   RonaldTheSnake/RonaldTheSnakeContent/snakeblock.png
+#	modified:   RonaldTheSnake/RonaldTheSnakeContent/snakehead.png
+#	new file:   RonaldTheSnake/RonaldTheSnakeContent/test1.tmx
+#	new file:   XTiled/LayerList.cs
+#	new file:   XTiled/Line.cs
+#	new file:   XTiled/Map.cs
+#	new file:   XTiled/MapObject.cs
+#	new file:   XTiled/MapReader.cs
+#	new file:   XTiled/ObjectLayer.cs
+#	new file:   XTiled/Polygon.cs
+#	new file:   XTiled/Polyline.cs
+#	new file:   XTiled/Properties/AssemblyInfo.cs
+#	new file:   XTiled/Property.cs
+#	new file:   XTiled/Tile.cs
+#	new file:   XTiled/TileData.cs
+#	new file:   XTiled/TileLayer.cs
+#	new file:   XTiled/Tileset.cs
+#	new file:   XTiled/XTiled [Windows].csproj
+#	new file:   XTiled/XTiled [Xbox].csproj
+#	new file:   XTiledExtensions/Properties/AssemblyInfo.cs
+#	new file:   XTiledExtensions/TMXContentImporter.cs
+#	new file:   XTiledExtensions/TMXContentProcessor.cs
+#	new file:   XTiledExtensions/TMXContentWriter.cs
+#	new file:   XTiledExtensions/XTiledExtensions.csproj
+#
+

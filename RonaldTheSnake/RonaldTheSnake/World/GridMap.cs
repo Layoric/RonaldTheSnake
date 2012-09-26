@@ -8,26 +8,34 @@ namespace RonaldTheSnake.World
 {
     public class GridMap
     {
-        List<List<MapCell>> grid = new List<List<MapCell>>();
+        List<MapCell> grid = new List<MapCell>();
 
-        public GridMap(int size)
+        public int Size { get; set; }
+
+        public int Width { get; set; }
+        public int Height { get; set; }
+
+        public GridMap(int width, int height)
         {
-            grid.Capacity = size;
-            for (int x = 0; x < size; x++)
+
+            Width = width;
+            Height = height;
+            grid.Capacity = width * height;
+            for (int x = 0; x < width; x++)
             {
-                List<MapCell> xCell = new List<MapCell>();
-                xCell.Capacity = size;
-                for (int y = 0; y < size; y++)
+                MapCell xCell = new MapCell();
+                grid.Add(xCell);
+                for (int y = 0; y < height; y++)
                 {
                     MapCell yCell = new MapCell();
-                    xCell.Add(yCell);
+                    grid.Add(yCell);
                 }
-                grid.Add(xCell);
+                
             }
             
         }
 
-        public List<List<MapCell>> Cells
+        public List<MapCell> Cells
         {
             get
             {
