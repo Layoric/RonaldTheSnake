@@ -91,6 +91,8 @@ namespace FuncWorks.XNA.XTiled {
         /// </summary>
         public LayerInfo[] LayerOrder;
 
+        public Point Offset;
+
 
         /// <summary>
         /// Draws all visible tile layers
@@ -178,12 +180,15 @@ namespace FuncWorks.XNA.XTiled {
         }
 
         private void DrawLayer(SpriteBatch spriteBatch, Int32 layerID, ref Rectangle region, Int32 txMin, Int32 txMax, Int32 tyMin, Int32 tyMax, Single layerDepth) {
+            if (Offset == null)
+                Offset = Point.Zero;
+            
             for (int y = tyMin; y <= tyMax; y++) {
                 for (int x = txMin; x <= txMax; x++) {
                     if (x < this.TileLayers[layerID].Tiles.Length && y < this.TileLayers[layerID].Tiles[x].Length && this.TileLayers[layerID].Tiles[x][y] != null) {
                         Rectangle tileTarget = this.TileLayers[layerID].Tiles[x][y].Target;
-                        tileTarget.X = tileTarget.X - region.X;
-                        tileTarget.Y = tileTarget.Y - region.Y;
+                        tileTarget.X = tileTarget.X - region.X + Offset.X;
+                        tileTarget.Y = tileTarget.Y - region.Y + Offset.Y;
 
                         spriteBatch.Draw(
                             this.Tilesets[this.SourceTiles[this.TileLayers[layerID].Tiles[x][y].SourceID].TilesetID].Texture,

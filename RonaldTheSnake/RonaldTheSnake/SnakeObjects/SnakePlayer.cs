@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using RonaldTheSnake.Screens;
 
 namespace RonaldTheSnake.SnakeObjects
 {
     public class SnakePlayer
     {
         public SnakeHead Head { get; set; }
+        public float Speed { get; set; }
         public SnakeBody Body { get; set; }
         public string Name { get; set; }
         private ScreenManager ScreenManager;
@@ -29,7 +31,7 @@ namespace RonaldTheSnake.SnakeObjects
         public void Update(GameTime gameTime)
         {
             elapsedGameTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (elapsedGameTime > 75)
+            if (elapsedGameTime > (10000 / Speed))
             {
                 UpdateHead();
                 UpdateBody();
@@ -52,7 +54,7 @@ namespace RonaldTheSnake.SnakeObjects
             Vector2 origin = new Vector2(Body.Texture.Width / 2, Body.Texture.Height / 2);
             foreach (var block in Body.Blocks)
             {
-                SpriteBatch.Draw(this.Body.Texture, SnakeHelper.MapToScreen(block.Position,this.Body.Texture),
+                SpriteBatch.Draw(this.Body.Texture, SnakeHelper.MapToScreen(block.Position, this.Body.Texture, ScreenManager.GraphicsDevice),
                         Body.Source,
                         Color.White,
                         MathHelper.ToRadians(0f),
@@ -69,7 +71,7 @@ namespace RonaldTheSnake.SnakeObjects
             switch (Direction)
             {
                 case SnakeDirection.Up:
-                    SpriteBatch.Draw(Head.Texture, SnakeHelper.MapToScreen(Head.Position, Head.Texture),
+                    SpriteBatch.Draw(Head.Texture, SnakeHelper.MapToScreen(Head.Position, Head.Texture, ScreenManager.GraphicsDevice),
                         Head.Source,
                         Color.White,
                         MathHelper.ToRadians(0f),
@@ -79,7 +81,7 @@ namespace RonaldTheSnake.SnakeObjects
                         0.0f);
                     break;
                 case SnakeDirection.Right:
-                    SpriteBatch.Draw(Head.Texture, SnakeHelper.MapToScreen(Head.Position, Head.Texture), 
+                    SpriteBatch.Draw(Head.Texture, SnakeHelper.MapToScreen(Head.Position, Head.Texture, ScreenManager.GraphicsDevice), 
                         Head.Source, 
                         Color.White, 
                         MathHelper.ToRadians(90f),
@@ -89,7 +91,7 @@ namespace RonaldTheSnake.SnakeObjects
                         0.0f);
                     break;
                 case SnakeDirection.Down:
-                    SpriteBatch.Draw(Head.Texture, SnakeHelper.MapToScreen(Head.Position, Head.Texture),
+                    SpriteBatch.Draw(Head.Texture, SnakeHelper.MapToScreen(Head.Position, Head.Texture, ScreenManager.GraphicsDevice),
                         Head.Source,
                         Color.White,
                         MathHelper.ToRadians(180f),
@@ -99,7 +101,7 @@ namespace RonaldTheSnake.SnakeObjects
                         0.0f);
                     break;
                 case SnakeDirection.Left:
-                    SpriteBatch.Draw(Head.Texture, SnakeHelper.MapToScreen(Head.Position, Head.Texture),
+                    SpriteBatch.Draw(Head.Texture, SnakeHelper.MapToScreen(Head.Position, Head.Texture, ScreenManager.GraphicsDevice),
                         Head.Source,
                         Color.White,
                         MathHelper.ToRadians(270f),

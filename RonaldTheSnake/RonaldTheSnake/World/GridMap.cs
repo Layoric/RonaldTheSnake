@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RonaldTheSnake.SnakeObjects;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace RonaldTheSnake.World
 {
@@ -43,7 +45,11 @@ namespace RonaldTheSnake.World
             }
         }
 
-
+        public Vector2 MapToScreen(Point point, Texture2D texture)
+        {
+            Vector2 result = new Vector2((point.X * 32) + (texture.Bounds.Width / 2), (point.Y * 32) + (texture.Bounds.Height / 2));
+            return result;
+        }
     }
 
     public class MapCell

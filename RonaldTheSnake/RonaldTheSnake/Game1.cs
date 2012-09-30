@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using RonaldTheSnake.Screens;
 
 namespace RonaldTheSnake
 {
@@ -24,14 +25,15 @@ namespace RonaldTheSnake
             graphics = new GraphicsDeviceManager(this);
 
             //Set the Windows Phone screen resolution
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            //graphics.PreferredBackBufferWidth = 1280;
+            //graphics.PreferredBackBufferHeight = 768;
+            graphics.IsFullScreen = true;
             
 
             Content.RootDirectory = "Content";
 
             // Frame rate is 30 fps by default for Windows Phone.
-            TargetElapsedTime = TimeSpan.FromSeconds(1 / 60.0);
+            TargetElapsedTime = TimeSpan.FromSeconds(1 / 120.0);
             IsFixedTimeStep = true;
 
             //Create a new instance of the Screen Manager

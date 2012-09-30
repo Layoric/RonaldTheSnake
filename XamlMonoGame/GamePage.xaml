@@ -1,0 +1,19 @@
+﻿<SwapChainBackgroundPanel
+    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
+    x:Class="XamlMonoGame.GamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XamlMonoGame"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UI:AdControl 
+            x:Name="myAd"
+            ApplicationId="856da3fc-c46d-48dc-bfeb-fb24aa3cd6ed" 
+            AdUnitId="10045816" 
+            HorizontalAlignment="Center" 
+            Height="90" 
+            Margin="0,0,0,0" 
+            VerticalAlignment="Bottom" 
+            Width="728"/>
+</SwapChainBackgroundPanel>

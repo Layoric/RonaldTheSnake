@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SnakeLevel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TiledMapFileName>test2</TiledMapFileName>
+  <IsTimeLimited>true</IsTimeLimited>
+  <IsCollectLimited>true</IsCollectLimited>
+  <IsScoreLimited>true</IsScoreLimited>
+  <IsFoodSequenced>true</IsFoodSequenced>
+  <TimeLimit>60</TimeLimit>
+  <ScoreLimit>10000</ScoreLimit>
+  <LevelType>Timed</LevelType>
+</SnakeLevel>

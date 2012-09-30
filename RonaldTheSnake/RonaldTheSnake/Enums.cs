@@ -13,4 +13,11 @@ namespace RonaldTheSnake
         Down,
         Left
     }
+
+    public enum SnakeLevelType
+    {
+        Arcade,
+        Puzzle,
+        Timed
+    }
 }

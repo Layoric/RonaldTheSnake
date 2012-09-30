@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Content;
 using RonaldTheSnake.SnakeObjects;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using RonaldTheSnake.Screens;
 
 namespace RonaldTheSnake.Templates
 {
@@ -22,6 +23,7 @@ namespace RonaldTheSnake.Templates
         public SnakePlayer BuildSnake()
         {
             SnakePlayer player = new SnakePlayer(ScreenManager);
+            player.Speed = 50f;
             player.Direction = SnakeDirection.Down;
             player.PreviousDirection = SnakeDirection.Down;
             player.Name = "Default";

@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Input.Touch;
 using System.Threading;
 
-namespace RonaldTheSnake
+namespace RonaldTheSnake.Screens
 {
     /// <summary>
     /// The screen manager is a component which manages one or more GameScreen
