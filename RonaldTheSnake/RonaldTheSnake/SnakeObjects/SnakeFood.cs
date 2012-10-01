@@ -6,13 +6,13 @@ using Microsoft.Xna.Framework;
 
 namespace RonaldTheSnake.SnakeObjects
 {
-    public class MapPickup
+    public class SnakeFood
     {
         public int PointsValue = 0;
 
         public Point Position { get; set; }
 
-        public MapPickup(int pointVal)
+        public SnakeFood(int pointVal)
         {
             PointsValue = pointVal;
         }

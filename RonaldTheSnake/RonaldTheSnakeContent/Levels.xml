@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="RonandTheSnake.CustomDataTypes.LevelMenu[]">
+    <Item>
+      <MapFileName>tutorial</MapFileName>
+      <MenuName>Tutorial</MenuName>
+      <MenuImageFile>tutorial.png</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>test1</MapFileName>
+      <MenuName>Level 1</MenuName>
+      <MenuImageFile>level1.png</MenuImageFile>
+    </Item>
+  </Asset>
+</XnaContent>

@@ -90,6 +90,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\RonandTheSnake.CustomDataTypes\RonandTheSnake.CustomDataTypes.csproj">
+      <Project>{6FDDE4F2-9AC1-4034-BAB0-E6F034E067EE}</Project>
+      <Name>RonandTheSnake.CustomDataTypes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\XTiledExtensions\XTiledExtensions.csproj">
       <Project>{AC3FAE00-C94C-4FE3-969F-232241195224}</Project>
       <Name>XTiledExtensions</Name>
@@ -98,6 +102,20 @@
   <ItemGroup>
     <Compile Include="test1.tmx">
       <Name>test1</Name>
+      <Importer>TMXContentImporter</Importer>
+      <Processor>TMXContentProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Levels.xml">
+      <Name>Levels</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="tutorial.tmx">
+      <Name>tutorial</Name>
       <Importer>TMXContentImporter</Importer>
       <Processor>TMXContentProcessor</Processor>
     </Compile>

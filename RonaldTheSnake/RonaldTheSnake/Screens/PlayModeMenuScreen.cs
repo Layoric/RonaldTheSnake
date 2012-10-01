@@ -13,6 +13,7 @@ namespace RonaldTheSnake.Screens
         MenuEntry playArcade;
         MenuEntry playPuzzle;
         MenuEntry playTimed;
+        PuzzleModeMenuScreen puzzleScreen;
 
         SnakeWorld gamePlayScreen;
 
@@ -46,11 +47,8 @@ namespace RonaldTheSnake.Screens
 
         void playPuzzle_Selected(object sender, PlayerIndexEventArgs e)
         {
-            if (gamePlayScreen == null)
-                gamePlayScreen = new SnakeWorld("test1");
-
-            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
-                               gamePlayScreen);
+            puzzleScreen = new PuzzleModeMenuScreen();
+            ScreenManager.AddScreen(puzzleScreen, e.PlayerIndex);
         }
 
         void playArcade_Selected(object sender, PlayerIndexEventArgs e)

@@ -20,21 +20,14 @@ namespace RonaldTheSnake.World
     {
         Point offset;
         public SnakeLevel CurrentLevel { get; set; }
-        bool gameOverVisible = false;
         public List<SnakePlayer> Players = new List<SnakePlayer>();
         public string TiledMapName { get; set; }
         Map tiledMap = new Map();
         GridMap map;
-        Random randomDropTime = new Random();
-        double timeForNextDrop = 0;
+        
         double elapsedTimed = 0;
-        double screenElapsedTime = 0;
         SpriteFont gameFont;
         public bool worldReset = false;
-        int foodCount = 0;
-        int foodCap = 4;
-        MapPickup pickUp;
-        List<MapCell> cellsInUse = new List<MapCell>();
          
 
         public SnakeWorld(string levelName)
@@ -78,26 +71,11 @@ namespace RonaldTheSnake.World
             tiledMap = content.Load<Map>(TiledMapName);
             SnakeHelper.Init(ScreenManager.GraphicsDevice);
             tiledMap.Offset = SnakeHelper.offset;
-            map = new GridMap(tiledMap.Width, tiledMap.Height);
+            map = new GridMap(tiledMap);
             CurrentLevel = new SnakeLevel(tiledMap);
-            int tileYIndex = tiledMap.TileLayers["Environment"].Tiles[0].Count();
-            int tileXIndex = tiledMap.TileLayers["Environment"].Tiles.Count();
-            for (int y = 0; y < tileYIndex; y++)
-            {
-                
-                for (int x = 0; x < tileXIndex; x++)
-                {
-                    if (tiledMap.TileLayers["Environment"].Tiles[x][y] != null)
-                    {
-                        int sourceId = tiledMap.TileLayers["Environment"].Tiles[x][y].SourceID;
-                        if (tiledMap.SourceTiles[sourceId].Properties.Keys.Contains("Col"))
-                        {
-                            cellsInUse.Add(map.Cells[y * map.Width + x]);
-                        }
-                    }
-                }
-            }
         }
+
+        
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
@@ -110,11 +88,10 @@ namespace RonaldTheSnake.World
                     UpdatePlayer(gameTime, player);
                 }
 
-                if (worldReset && !gameOverVisible)
+                if (worldReset)
                 {
                     SnakeHelper.ShowGameOver(ScreenManager, ControllingPlayer);
 
-                    gameOverVisible = true;
                     worldReset = false;
                 }
 
@@ -123,7 +100,7 @@ namespace RonaldTheSnake.World
                     SnakeHelper.ShowArcadeTimeUp(ScreenManager, ControllingPlayer, Players[0].Score);
                 }
 
-                GenerateSnakeFood(gameTime);
+                map.Update(gameTime);
 
             }
 
@@ -180,7 +157,7 @@ namespace RonaldTheSnake.World
             player.Speed += 5;
             currentCell.Pickup = null;
             currentCell.ContainsPickup = false;
-            foodCount--;
+            map.FoodCount--;
         }
 
         private bool HasPlayerHitSelf(SnakePlayer player)
@@ -195,35 +172,7 @@ namespace RonaldTheSnake.World
             return false;
         }
 
-        private void GenerateSnakeFood(GameTime gameTime)
-        {
-            if (timeForNextDrop == 0)
-            {
-                timeForNextDrop = randomDropTime.Next(1, 3000);
-            }
-            if (elapsedTimed > timeForNextDrop && foodCount < foodCap)
-            {
-                elapsedTimed = 0;
-                timeForNextDrop = 0;
-                foodCount++;
-                Random randX = new Random(DateTime.Now.Millisecond);
-                Random randY = new Random(DateTime.Now.Millisecond + 5);
-                int xPos,yPos;
-                
-                xPos = randX.Next(0, map.Width - 1);
-                yPos = randY.Next(0, map.Height - 1);
-                if (!cellsInUse.Contains(map.Cells[yPos * map.Width + xPos]))
-                {
-                    pickUp = new MapPickup(50);
-                    pickUp.Position = new Point(xPos, yPos);
-                    map.Cells[yPos * map.Width + xPos].Pickup = pickUp;
-                }
-                else
-                {
-                    foodCount--;
-                }
-            }
-        }
+        
 
         public override void Draw(GameTime gameTime)
         {
@@ -321,9 +270,26 @@ namespace RonaldTheSnake.World
         public SnakeLevel(Map map)
         {
             LevelType = (SnakeLevelType)Enum.Parse(typeof(SnakeLevelType), map.Properties["LevelType"].Value);
-            IsTimeLimited = bool.Parse(map.Properties["IsTimeLimited"].Value);
-            TimeLimit = int.Parse(map.Properties["TimeLimit"].Value);
-            RemainingTime = TimeLimit;
+
+            switch (LevelType)
+            {
+                case SnakeLevelType.Arcade:
+                    break;
+                case SnakeLevelType.Puzzle:
+                    IsCollectLimited = bool.Parse(map.Properties["IsCollectLimited"].Value);
+                    IsScoreLimited = bool.Parse(map.Properties["IsScoreLimited"].Value);
+                    IsTimeLimited = bool.Parse(map.Properties["IsTimeLimited"].Value);
+
+                    break;
+                case SnakeLevelType.Timed:
+                    TimeLimit = int.Parse(map.Properties["TimeLimit"].Value);
+                    RemainingTime = TimeLimit;
+                    break;
+                default:
+                    break;
+            }
+
+            
         }
 
         public bool IsTimeLimited { get; set; }

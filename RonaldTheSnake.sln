@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTiledExtensions", "XTiledE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTiled [Windows]", "XTiled\XTiled [Windows].csproj", "{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RonandTheSnake.CustomDataTypes", "RonandTheSnake.CustomDataTypes\RonandTheSnake.CustomDataTypes.csproj", "{6FDDE4F2-9AC1-4034-BAB0-E6F034E067EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -29,6 +31,10 @@ Global
 		{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}.Debug|x86.Build.0 = Debug|x86
 		{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}.Release|x86.ActiveCfg = Release|x86
 		{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}.Release|x86.Build.0 = Release|x86
+		{6FDDE4F2-9AC1-4034-BAB0-E6F034E067EE}.Debug|x86.ActiveCfg = Debug|x86
+		{6FDDE4F2-9AC1-4034-BAB0-E6F034E067EE}.Debug|x86.Build.0 = Debug|x86
+		{6FDDE4F2-9AC1-4034-BAB0-E6F034E067EE}.Release|x86.ActiveCfg = Release|x86
+		{6FDDE4F2-9AC1-4034-BAB0-E6F034E067EE}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

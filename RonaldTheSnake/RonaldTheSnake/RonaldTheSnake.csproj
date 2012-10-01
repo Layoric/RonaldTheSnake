@@ -95,8 +95,9 @@
     <Compile Include="ScreenManager\PlayerIndexEventArgs.cs" />
     <Compile Include="ScreenManager\ScreenManager.cs" />
     <Compile Include="Screens\PlayModeMenuScreen.cs" />
+    <Compile Include="Screens\PuzzleModeMenuScreen.cs" />
     <Compile Include="SnakeHelper.cs" />
-    <Compile Include="SnakeObjects\MapPickup.cs" />
+    <Compile Include="SnakeObjects\SnakeFood.cs" />
     <Compile Include="SnakeObjects\SnakeBlock.cs" />
     <Compile Include="SnakeObjects\SnakeBody.cs" />
     <Compile Include="SnakeObjects\SnakePlayer.cs" />
@@ -116,6 +117,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\RonandTheSnake.CustomDataTypes\RonandTheSnake.CustomDataTypes.csproj">
+      <Project>{6FDDE4F2-9AC1-4034-BAB0-E6F034E067EE}</Project>
+      <Name>RonandTheSnake.CustomDataTypes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\XTiled\XTiled [Windows].csproj">
       <Project>{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}</Project>
       <Name>XTiled [Windows]</Name>

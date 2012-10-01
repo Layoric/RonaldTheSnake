@@ -9,5 +9,8 @@ Content\menufont.xnb
 Content\gamefont.xnb
 Content\gamescore.xnb
 Content\test1.xnb
+Content\Levels.xnb
 Content\test1\00.xnb
+Content\tutorial.xnb
+Content\tutorial\00.xnb
 Level1.xml
