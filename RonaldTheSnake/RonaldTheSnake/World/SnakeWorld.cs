@@ -222,7 +222,10 @@ namespace RonaldTheSnake.World
             //}
 
             ScreenManager.SpriteBatch.DrawString(gameFont, Players[0].Score.ToString(), new Vector2(12, 12), Color.White);
-            ScreenManager.SpriteBatch.DrawString(gameFont, ((int)CurrentLevel.RemainingTime).ToString(), new Vector2(640, 20), Color.Teal);
+            if (CurrentLevel.IsTimeLimited)
+            {
+                ScreenManager.SpriteBatch.DrawString(gameFont, ((int)CurrentLevel.RemainingTime).ToString(), new Vector2(640, 20), Color.Teal);
+            }
             ScreenManager.SpriteBatch.End();
         }
 
@@ -279,7 +282,9 @@ namespace RonaldTheSnake.World
                     IsCollectLimited = bool.Parse(map.Properties["IsCollectLimited"].Value);
                     IsScoreLimited = bool.Parse(map.Properties["IsScoreLimited"].Value);
                     IsTimeLimited = bool.Parse(map.Properties["IsTimeLimited"].Value);
-
+                    FoodRequired = IsCollectLimited ? (int?)int.Parse(map.Properties["FoodRequired"].Value) : null;
+                    ScoreRequired = IsScoreLimited ? (int?)int.Parse(map.Properties["ScoreRequired"].Value) : null;
+                    TimeLimit = IsTimeLimited ? (int?)int.Parse(map.Properties["TimeLimit"].Value) : null;              
                     break;
                 case SnakeLevelType.Timed:
                     TimeLimit = int.Parse(map.Properties["TimeLimit"].Value);
@@ -299,7 +304,8 @@ namespace RonaldTheSnake.World
         public bool IsFoodSequenced { get; set; }
 
         public int? TimeLimit { get; set; }
-        public int? ScoreLimit { get; set; }
+        public int? ScoreRequired { get; set; }
+        public int? FoodRequired { get; set; }
 
         public double? RemainingTime { get; set; }
 

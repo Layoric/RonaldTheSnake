@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="32" height="18" tilewidth="32" tileheight="32">
  <properties>
-  <property name="IsCollectLimited" value="false"/>
+  <property name="FoodRequired" value="20"/>
+  <property name="IsCollectLimited" value="true"/>
   <property name="IsFoodSequenced" value="false"/>
   <property name="IsScoreLimited" value="false"/>
-  <property name="IsTimeLimited" value="true"/>
-  <property name="LevelType" value="Timed"/>
-  <property name="TimeLimit" value="60"/>
+  <property name="IsTimeLimited" value="false"/>
+  <property name="LevelType" value="Puzzle"/>
+  <property name="ScoreRequired" value=""/>
  </properties>
  <tileset firstgid="1" name="desert" tilewidth="32" tileheight="32" spacing="1" margin="1">
   <image source="desert.png" width="265" height="199"/>
