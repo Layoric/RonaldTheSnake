@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using RonaldTheSnake.Screens;
+using RonaldTheSnake.World;
 
 namespace RonaldTheSnake.SnakeObjects
 {
@@ -17,7 +18,10 @@ namespace RonaldTheSnake.SnakeObjects
         private ScreenManager ScreenManager;
         private SpriteBatch SpriteBatch;
         double elapsedGameTime = 0.0f;
+        public MapCell HitCell;
         public int Score = 0;
+
+        public int TotalFoodCollected = 0;
 
         public SnakePlayer(ScreenManager screenManager)
         {
@@ -118,6 +122,7 @@ namespace RonaldTheSnake.SnakeObjects
         private void UpdateHead()
         {
             PreviousDirection = Direction;
+            Head.PreviousPosition = Head.Position;
             switch (Direction)
             {
                 case SnakeDirection.Up:
@@ -139,37 +144,53 @@ namespace RonaldTheSnake.SnakeObjects
 
         private void UpdateBody()
         {
-            for (int i = Body.Blocks.Count - 1; i >= 0; --i)
+            
+            for (int i = 0; i < Body.Blocks.Count - 1; i++)
             {
-                SnakeBlock block = Body.Blocks[i];
-                block.PreviousDirection = Direction;
-                
-                switch (block.Direction)
-                {
-                    case SnakeDirection.Up:
-                        block.Position = new Point(block.Position.X, block.Position.Y - 1);
-                        break;
-                    case SnakeDirection.Right:
-                        block.Position = new Point(block.Position.X + 1, block.Position.Y);
-                        break;
-                    case SnakeDirection.Down:
-                        block.Position = new Point(block.Position.X, block.Position.Y + 1);
-                        break;
-                    case SnakeDirection.Left:
-                        block.Position = new Point(block.Position.X - 1, block.Position.Y);
-                        break;
-                    default:
-                        break;
-                }
-                if (i > 0)
-                {
-                    block.Direction = Body.Blocks[i - 1].Direction;
-                }
-                else
-                {
-                    block.Direction = PreviousDirection;
-                }
+                Body.Blocks[i].PreviousPosition = Body.Blocks[i].Position;
+                Body.Blocks[i].PreviousDirection = Body.Blocks[i].Direction;
             }
+            Body.Blocks[0].Position = Head.PreviousPosition;
+            Body.Blocks[0].Direction = PreviousDirection;
+            for (int i = Body.Blocks.Count - 1; i > 0; i--)
+            {
+                //Body.Blocks[i - 1].PreviousPosition = Body.Blocks[i - 1].Position;
+                SnakeBlock bodyBlock = Body.Blocks[i];
+                bodyBlock.PreviousPosition = bodyBlock.Position;
+                bodyBlock.Position = Body.Blocks[i - 1].PreviousPosition;
+                bodyBlock.Direction = Body.Blocks[i - 1].PreviousDirection;
+            }
+            //for (int i = Body.Blocks.Count - 1; i >= 0; --i)
+            //{
+            //    SnakeBlock block = Body.Blocks[i];
+            //    block.PreviousDirection = Direction;
+                
+            //    switch (block.Direction)
+            //    {
+            //        case SnakeDirection.Up:
+            //            block.Position = new Point(block.Position.X, block.Position.Y - 1);
+            //            break;
+            //        case SnakeDirection.Right:
+            //            block.Position = new Point(block.Position.X + 1, block.Position.Y);
+            //            break;
+            //        case SnakeDirection.Down:
+            //            block.Position = new Point(block.Position.X, block.Position.Y + 1);
+            //            break;
+            //        case SnakeDirection.Left:
+            //            block.Position = new Point(block.Position.X - 1, block.Position.Y);
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //    if (i > 0)
+            //    {
+            //        block.Direction = Body.Blocks[i - 1].Direction;
+            //    }
+            //    else
+            //    {
+            //        block.Direction = PreviousDirection;
+            //    }
+            //}
         }
     }
 }

@@ -29,6 +29,7 @@ namespace RonaldTheSnake.SnakeObjects
 
         public Rectangle Source { get; set; }
         public Point Position { get; set; }
+        public Point PreviousPosition { get; set; }
 
         public SnakeHead(Point pos)
         {

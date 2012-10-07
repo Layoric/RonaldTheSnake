@@ -26,7 +26,7 @@ namespace RonaldTheSnake.Screens
         /// </summary>
         string text;
 
-        float scale = 0.75f;
+        public float scale = 0.75f;
 
         /// <summary>
         /// Tracks a fading selection effect on the entry.
@@ -34,13 +34,15 @@ namespace RonaldTheSnake.Screens
         /// <remarks>
         /// The entries transition out of the selection effect when they are deselected.
         /// </remarks>
-        float selectionFade;
+        public float selectionFade;
 
         /// <summary>
         /// The position at which the entry is drawn. This is set by the MenuScreen
         /// each frame in Update.
         /// </summary>
         Vector2 position;
+
+        bool isVisible = true;
 
         #endregion
 
@@ -64,6 +66,12 @@ namespace RonaldTheSnake.Screens
         {
             get { return position; }
             set { position = value; }
+        }
+
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set { isVisible = value; }
         }
 
 
@@ -161,6 +169,7 @@ namespace RonaldTheSnake.Screens
 
             Vector2 origin = new Vector2(0, font.LineSpacing / 2);
 
+            if(IsVisible)
             spriteBatch.DrawString(font, text, position, color, 0,
                                    origin, _scale, SpriteEffects.None, 0);
         }

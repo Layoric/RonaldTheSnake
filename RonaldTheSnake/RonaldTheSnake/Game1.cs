@@ -25,7 +25,7 @@ namespace RonaldTheSnake
             graphics = new GraphicsDeviceManager(this);
 
             //Set the Windows Phone screen resolution
-            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferWidth = 1376;
             graphics.PreferredBackBufferHeight = 768;
             graphics.IsFullScreen = false;
             
@@ -33,7 +33,7 @@ namespace RonaldTheSnake
             Content.RootDirectory = "Content";
 
             // Frame rate is 30 fps by default for Windows Phone.
-            TargetElapsedTime = TimeSpan.FromSeconds(1 / 120.0);
+            TargetElapsedTime = TimeSpan.FromSeconds(1 / 60.0f);
             IsFixedTimeStep = true;
 
             //Create a new instance of the Screen Manager

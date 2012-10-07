@@ -2,14 +2,109 @@
 <XnaContent>
   <Asset Type="RonandTheSnake.CustomDataTypes.LevelMenu[]">
     <Item>
-      <MapFileName>tutorial</MapFileName>
-      <MenuName>Tutorial</MenuName>
-      <MenuImageFile>tutorial.png</MenuImageFile>
+      <MapFileName>level1</MapFileName>
+      <MenuName>Level 1</MenuName>
+      <MenuImageFile>2_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level2</MapFileName>
+      <MenuName>Level 2</MenuName>
+      <MenuImageFile>2_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level3</MapFileName>
+      <MenuName>1 - 3</MenuName>
+      <MenuImageFile>3_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level4</MapFileName>
+      <MenuName>1 - 4</MenuName>
+      <MenuImageFile>4_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level5</MapFileName>
+      <MenuName>1 - 5</MenuName>
+      <MenuImageFile>5_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level6</MapFileName>
+      <MenuName>1 - 6</MenuName>
+      <MenuImageFile>6_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level7</MapFileName>
+      <MenuName>1 - 7</MenuName>
+      <MenuImageFile>7_preview</MenuImageFile>
     </Item>
     <Item>
       <MapFileName>test1</MapFileName>
       <MenuName>Level 1</MenuName>
-      <MenuImageFile>level1.png</MenuImageFile>
+      <MenuImageFile>text1_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level2</MapFileName>
+      <MenuName>Level 2</MenuName>
+      <MenuImageFile>level2_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level3</MapFileName>
+      <MenuName>1 - 3</MenuName>
+      <MenuImageFile>3_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level4</MapFileName>
+      <MenuName>1 - 4</MenuName>
+      <MenuImageFile>4_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level5</MapFileName>
+      <MenuName>1 - 5</MenuName>
+      <MenuImageFile>5_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level6</MapFileName>
+      <MenuName>1 - 6</MenuName>
+      <MenuImageFile>6_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level7</MapFileName>
+      <MenuName>1 - 7</MenuName>
+      <MenuImageFile>7_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>test1</MapFileName>
+      <MenuName>Level 1</MenuName>
+      <MenuImageFile>text1_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level2</MapFileName>
+      <MenuName>Level 2</MenuName>
+      <MenuImageFile>level2_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level3</MapFileName>
+      <MenuName>1 - 3</MenuName>
+      <MenuImageFile>3_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level4</MapFileName>
+      <MenuName>1 - 4</MenuName>
+      <MenuImageFile>4_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level5</MapFileName>
+      <MenuName>1 - 5</MenuName>
+      <MenuImageFile>5_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level6</MapFileName>
+      <MenuName>1 - 6</MenuName>
+      <MenuImageFile>6_preview</MenuImageFile>
+    </Item>
+    <Item>
+      <MapFileName>level7</MapFileName>
+      <MenuName>1 - 7</MenuName>
+      <MenuImageFile>7_preview</MenuImageFile>
     </Item>
   </Asset>
 </XnaContent>

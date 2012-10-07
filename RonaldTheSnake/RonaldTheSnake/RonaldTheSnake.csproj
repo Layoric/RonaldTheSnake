@@ -79,6 +79,9 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Factories\SnakeFactory.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />
+    <Compile Include="Screens\LevelChoiceMenuScreen.cs" />
+    <Compile Include="Screens\LevelCompleteBox.cs" />
+    <Compile Include="Screens\LevelMenuEntry.cs" />
     <Compile Include="Screens\LoadingScreen.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,6 +107,7 @@
     <Compile Include="Templates\ISnakeTemplate.cs" />
     <Compile Include="Templates\SnakeDefaultTemplate.cs" />
     <Compile Include="World\GridMap.cs" />
+    <Compile Include="World\SnakeLevel.cs" />
     <Compile Include="World\SnakeWorld.cs" />
   </ItemGroup>
   <ItemGroup>

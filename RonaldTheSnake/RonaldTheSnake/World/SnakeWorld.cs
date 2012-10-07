@@ -23,11 +23,15 @@ namespace RonaldTheSnake.World
         public List<SnakePlayer> Players = new List<SnakePlayer>();
         public string TiledMapName { get; set; }
         Map tiledMap = new Map();
+        bool refreshHitCells = true;
+        double refreshHitCellTimeLimit = 0;
         GridMap map;
         
         double elapsedTimed = 0;
         SpriteFont gameFont;
+        SpriteFont scoreFont;
         public bool worldReset = false;
+        public bool levelComplete = false;
          
 
         public SnakeWorld(string levelName)
@@ -68,6 +72,7 @@ namespace RonaldTheSnake.World
             ContentManager content = ScreenManager.Game.Content;
             Players.Add(SnakeFactory.CreateFromTemplate("default"));
             gameFont = ScreenManager.Game.Content.Load<SpriteFont>("gamefont");
+            scoreFont = ScreenManager.Game.Content.Load<SpriteFont>("scorefont");
             tiledMap = content.Load<Map>(TiledMapName);
             SnakeHelper.Init(ScreenManager.GraphicsDevice);
             tiledMap.Offset = SnakeHelper.offset;
@@ -88,29 +93,68 @@ namespace RonaldTheSnake.World
                     UpdatePlayer(gameTime, player);
                 }
 
-                if (worldReset)
-                {
-                    SnakeHelper.ShowGameOver(ScreenManager, ControllingPlayer);
+                CheckTimeRemaining();
 
-                    worldReset = false;
-                }
+                CheckCollectedRemaining();
 
-                if (CurrentLevel.RemainingTime < 0)
-                {
-                    SnakeHelper.ShowArcadeTimeUp(ScreenManager, ControllingPlayer, Players[0].Score);
-                }
+                
 
                 map.Update(gameTime);
 
             }
 
+            CheckDisplayEndScreen();
+
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+        }
+
+        private void CheckCollectedRemaining()
+        {
+            if (CurrentLevel.IsCollectLimited)
+            {
+                if (CurrentLevel.FoodRequired <= Players[0].TotalFoodCollected)
+                {
+                    levelComplete = true;
+                }
+            }
+        }
+
+        private void CheckDisplayEndScreen()
+        {
+            if (worldReset)
+            {
+                SnakeHelper.ShowGameOver(ScreenManager, ControllingPlayer);
+
+                worldReset = false;
+            }
+
+            if (levelComplete)
+            {
+                SnakeHelper.ShowLevelComplete(ScreenManager, ControllingPlayer, Players[0].Score);
+            }
+        }
+
+        private void CheckTimeRemaining()
+        {
+            if (CurrentLevel.RemainingTime < 0)
+            {
+                SnakeHelper.ShowArcadeTimeUp(ScreenManager, ControllingPlayer, Players[0].Score);
+            }
         }
 
         private void TrackElapsedTime(GameTime gameTime)
         {
             elapsedTimed += gameTime.ElapsedGameTime.TotalMilliseconds;
             CurrentLevel.RemainingTime -= gameTime.ElapsedGameTime.TotalSeconds;
+            if (refreshHitCells)
+            {
+                refreshHitCellTimeLimit -= gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (refreshHitCellTimeLimit < 0)
+                {
+                    refreshHitCells = false;
+                    refreshHitCellTimeLimit = 1500;
+                }
+            }
         }
 
         private void UpdatePlayer(GameTime gameTime, SnakePlayer player)
@@ -122,23 +166,50 @@ namespace RonaldTheSnake.World
                 player.Head.Position.X < 0)
             {
 
-
-                worldReset = true;
+                switch (player.Direction)
+                {
+                    case SnakeDirection.Up:
+                        player.Head.Position = new Point(player.Head.Position.X, map.Height - 1);
+                        break;
+                    case SnakeDirection.Right:
+                        player.Head.Position = new Point(0, player.Head.Position.Y);
+                        break;
+                    case SnakeDirection.Down:
+                        player.Head.Position = new Point(player.Head.Position.X, 0);
+                        break;
+                    case SnakeDirection.Left:
+                        player.Head.Position = new Point(map.Width - 1, player.Head.Position.Y);
+                        break;
+                    default:
+                        break;
+                }
+                //worldReset = true;
             }
-            else
-            {
+            
                 MapCell currentCell = map.Cells[player.Head.Position.Y * map.Width + player.Head.Position.X];
                 Tile currentTile = null;
                 int currentX = player.Head.Position.X;
                 int currentY = player.Head.Position.Y;
-                if (tiledMap.TileLayers["Environment"].Tiles[currentX][currentY] != null)
-                    currentTile = tiledMap.SourceTiles[tiledMap.TileLayers["Environment"].Tiles[currentX][currentY].SourceID];
+                if (currentX > 0 && currentX < tiledMap.Width - 1 && currentY > 0 && currentY < tiledMap.Height)
+                {
+                    if (tiledMap.TileLayers["Environment"].Tiles[currentX][currentY] != null)
+                        currentTile = tiledMap.SourceTiles[tiledMap.TileLayers["Environment"].Tiles[currentX][currentY].SourceID];
+                }
+                else
+                {
+                    currentTile = null;
+                }
 
                 if (currentTile != null && currentTile.Properties.Count > 0 && currentTile.Properties.Keys.Contains("Col"))
                 {
+                    PlayerEnvironmentCollision(player);
+                }
+
+                if (currentTile != null && currentTile.Properties.Count > 0 && currentTile.Properties.Keys.Contains("Wall"))
+                {
                     worldReset = true;
                 }
-                if (currentCell.ContainsPickup)
+                if (currentCell != null && currentCell.ContainsPickup)
                 {
                     PickupFood(player, currentCell);
                 }
@@ -147,6 +218,32 @@ namespace RonaldTheSnake.World
                 {
                     worldReset = true;
                 }
+            
+        }
+
+        private void Update(SnakeHead head)
+        {
+            
+        }
+
+        private void PlayerEnvironmentCollision(SnakePlayer player)
+        {
+            if (player.Body.Blocks.Count > 4)
+            {
+                if (!refreshHitCells)
+                {
+                    int limit = player.Body.Blocks.Count - 5;
+                    for (int i = player.Body.Blocks.Count - 1; i > limit; i--)
+                    {
+                        player.Body.Blocks.RemoveAt(i);
+                        player.Score -= 40;
+                    }
+                    refreshHitCells = true;
+                }
+            }
+            else
+            {
+                worldReset = true;
             }
         }
 
@@ -158,6 +255,7 @@ namespace RonaldTheSnake.World
             currentCell.Pickup = null;
             currentCell.ContainsPickup = false;
             map.FoodCount--;
+            player.TotalFoodCollected++;
         }
 
         private bool HasPlayerHitSelf(SnakePlayer player)
@@ -221,10 +319,22 @@ namespace RonaldTheSnake.World
             //        + pickUp.Position.Y, new Vector2(640, 150), Color.Red);
             //}
 
-            ScreenManager.SpriteBatch.DrawString(gameFont, Players[0].Score.ToString(), new Vector2(12, 12), Color.White);
+            ScreenManager.SpriteBatch.DrawString(scoreFont, Players[0].Score.ToString(), new Vector2(
+                ((ScreenManager.GraphicsDevice.DisplayMode.Width + 1024) / 2) - 50
+                , 15), Color.White);
+
+            if (CurrentLevel.IsCollectLimited)
+            {
+                ScreenManager.SpriteBatch.DrawString(scoreFont, Players[0].TotalFoodCollected.ToString() + "/" + 
+                    CurrentLevel.FoodRequired,
+                    new Vector2(((ScreenManager.GraphicsDevice.DisplayMode.Width + 1024) / 2) - 250
+                    , 15), Color.White);
+            }
+
             if (CurrentLevel.IsTimeLimited)
             {
-                ScreenManager.SpriteBatch.DrawString(gameFont, ((int)CurrentLevel.RemainingTime).ToString(), new Vector2(640, 20), Color.Teal);
+                ScreenManager.SpriteBatch.DrawString(scoreFont, ((int)CurrentLevel.RemainingTime).ToString(), 
+                    new Vector2(640, 15), Color.White);
             }
             ScreenManager.SpriteBatch.End();
         }
@@ -267,49 +377,5 @@ namespace RonaldTheSnake.World
 
     }
 
-    public class SnakeLevel
-    {
-
-        public SnakeLevel(Map map)
-        {
-            LevelType = (SnakeLevelType)Enum.Parse(typeof(SnakeLevelType), map.Properties["LevelType"].Value);
-
-            switch (LevelType)
-            {
-                case SnakeLevelType.Arcade:
-                    break;
-                case SnakeLevelType.Puzzle:
-                    IsCollectLimited = bool.Parse(map.Properties["IsCollectLimited"].Value);
-                    IsScoreLimited = bool.Parse(map.Properties["IsScoreLimited"].Value);
-                    IsTimeLimited = bool.Parse(map.Properties["IsTimeLimited"].Value);
-                    FoodRequired = IsCollectLimited ? (int?)int.Parse(map.Properties["FoodRequired"].Value) : null;
-                    ScoreRequired = IsScoreLimited ? (int?)int.Parse(map.Properties["ScoreRequired"].Value) : null;
-                    TimeLimit = IsTimeLimited ? (int?)int.Parse(map.Properties["TimeLimit"].Value) : null;              
-                    break;
-                case SnakeLevelType.Timed:
-                    TimeLimit = int.Parse(map.Properties["TimeLimit"].Value);
-                    RemainingTime = TimeLimit;
-                    break;
-                default:
-                    break;
-            }
-
-            
-        }
-
-        public bool IsTimeLimited { get; set; }
-        public bool IsCollectLimited { get; set; }
-        public bool IsScoreLimited { get;set; }
-
-        public bool IsFoodSequenced { get; set; }
-
-        public int? TimeLimit { get; set; }
-        public int? ScoreRequired { get; set; }
-        public int? FoodRequired { get; set; }
-
-        public double? RemainingTime { get; set; }
-
-        public SnakeLevelType LevelType { get; set; }
-         
-    }    
+       
 }

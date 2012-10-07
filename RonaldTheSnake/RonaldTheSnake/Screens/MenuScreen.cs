@@ -26,7 +26,7 @@ namespace RonaldTheSnake.Screens
         const int menuEntryPadding = 10;
 
         List<MenuEntry> menuEntries = new List<MenuEntry>();
-        int selectedEntry = 0;
+        public int selectedEntry = 0;
         string menuTitle;
 
         #endregion

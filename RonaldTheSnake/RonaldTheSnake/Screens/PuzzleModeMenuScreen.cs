@@ -6,10 +6,11 @@ using RonaldTheSnake.World;
 using System.Xml;
 using Microsoft.Xna.Framework.Content;
 using RonandTheSnake.CustomDataTypes;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace RonaldTheSnake.Screens
 {
-    class PuzzleModeMenuScreen : MenuScreen
+    class PuzzleModeMenuScreen : LevelChoiceMenuScreen
     {
         List<MenuEntry> allLevels = new List<MenuEntry>();
         LevelMenu[] allLevelMenus;
@@ -22,11 +23,13 @@ namespace RonaldTheSnake.Screens
 
         public override void LoadContent()
         {
-            allLevelMenus = ScreenManager.Game.Content.Load<LevelMenu[]>("Levels");
+            allLevelMenus = SnakeHelper.GetAllLevels(ScreenManager.Game.Content);
 
             foreach (LevelMenu level in allLevelMenus)
             {
-                LevelMenuEntry menuLevel = new LevelMenuEntry(level.MenuName, level.MapFileName);
+                LevelMenuEntry menuLevel = new LevelMenuEntry(level.MapFileName,level.MenuName);
+                menuLevel.Preview = ScreenManager.Game.Content.Load<Texture2D>(level.MenuImageFile);
+                menuLevel.Source = menuLevel.Preview.Bounds;
                 menuLevel.Selected += menuLevel_Selected;
                 MenuEntries.Add(menuLevel);
             }
@@ -43,16 +46,6 @@ namespace RonaldTheSnake.Screens
             gamePlayScreen = new SnakeWorld(fileName);
             LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
                                gamePlayScreen);
-        }
-    }
-
-    class LevelMenuEntry : MenuEntry
-    {
-        public string FileName { get; set; }
-
-        public LevelMenuEntry(string menuText,string fileName) : base(menuText)
-        {
-            FileName = fileName;
         }
     }
 }

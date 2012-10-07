@@ -16,6 +16,31 @@ namespace RonaldTheSnake.Screens
         public string message;
         public Texture2D gradientTexture;
 
+        public Texture2D border2pixelwidth;
+
+        private Texture2D customBackground;
+
+        public Texture2D CustomBackground
+        {
+            get { return customBackground; }
+            set { customBackground = value; }
+        }
+
+        public Rectangle BackgroundRectangle;
+
+        private Rectangle leftBorderRect;
+        private Rectangle rightBorderRect;
+        private Rectangle topBorderRect;
+        private Rectangle bottomBorderRect;
+
+        #endregion
+
+        #region Defaults
+
+        public bool FixedSize = false;
+        public int BorderWidth = 4;
+        public bool ShowBorder = true;
+
         #endregion
 
         #region Events
@@ -66,6 +91,8 @@ namespace RonaldTheSnake.Screens
             ContentManager content = ScreenManager.Game.Content;
 
             gradientTexture = content.Load<Texture2D>("gradient");
+
+            border2pixelwidth = content.Load<Texture2D>("menu/border2pixel");
         }
 
 
@@ -131,23 +158,61 @@ namespace RonaldTheSnake.Screens
             const int hPad = 256;
             const int vPad = 128;
 
-            Rectangle backgroundRectangle = new Rectangle((int)textPosition.X - hPad,
-                                                          (int)textPosition.Y - vPad,
-                                                          (int)textSize.X + hPad * 2,
-                                                          (int)textSize.Y + vPad * 2);
+            if (!FixedSize)
+            {
+                BackgroundRectangle = new Rectangle((int)textPosition.X - hPad,
+                                                              (int)textPosition.Y - vPad,
+                                                              (int)textSize.X + hPad * 2,
+                                                              (int)textSize.Y + vPad * 2);
+            }
 
             // Fade the popup alpha during transitions.
             Color color = Color.White * TransitionAlpha;
 
             spriteBatch.Begin();
 
-            // Draw the background rectangle.
-            spriteBatch.Draw(gradientTexture, backgroundRectangle, color);
+            // Draw the default background rectangle.
+            if (customBackground == null)
+                spriteBatch.Draw(gradientTexture, BackgroundRectangle, color);
+            else
+                spriteBatch.Draw(customBackground, BackgroundRectangle, color);
+
+            if (ShowBorder)
+            {
+                UpdateBorderRects();
+                //left
+                spriteBatch.Draw(border2pixelwidth,leftBorderRect,color);
+                //top
+                spriteBatch.Draw(border2pixelwidth,topBorderRect,color);
+                //right
+                spriteBatch.Draw(border2pixelwidth,rightBorderRect,color);
+                //bottom
+                spriteBatch.Draw(border2pixelwidth,bottomBorderRect,color);                                 
+            }
 
             // Draw the message box text.
             spriteBatch.DrawString(font, message, textPosition, color);
 
             spriteBatch.End();
+        }
+
+        private void UpdateBorderRects()
+        {
+            leftBorderRect = new Rectangle(BackgroundRectangle.Left,
+                                    BackgroundRectangle.Top,
+                                    BorderWidth, BackgroundRectangle.Height);
+
+            rightBorderRect = new Rectangle(BackgroundRectangle.Right,
+                                    BackgroundRectangle.Top,
+                                    BorderWidth, BackgroundRectangle.Height + BorderWidth);
+
+            bottomBorderRect = new Rectangle(BackgroundRectangle.Left,
+                                 BackgroundRectangle.Bottom,
+                                 BackgroundRectangle.Width, BorderWidth);
+
+            topBorderRect = new Rectangle(BackgroundRectangle.Left,
+                                    BackgroundRectangle.Top,
+                                    BackgroundRectangle.Width, BorderWidth);
         }
 
 

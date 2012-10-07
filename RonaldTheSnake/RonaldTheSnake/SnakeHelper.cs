@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 using RonaldTheSnake.SnakeObjects;
 using Microsoft.Xna.Framework.Graphics;
 using RonaldTheSnake.Screens;
+using RonandTheSnake.CustomDataTypes;
+using Microsoft.Xna.Framework.Content;
 
 namespace RonaldTheSnake
 {
@@ -13,6 +15,7 @@ namespace RonaldTheSnake
     {
         static GameOverBox gameOver;
         static GameOverBox arcadeTimeUp;
+        static LevelCompleteBox levelComplete;
         public static Point offset;
         static bool init = false;
 
@@ -78,5 +81,22 @@ namespace RonaldTheSnake
             screenManager.AddScreen(arcadeTimeUp, playerIndex);
         }
 
+
+        public static void ShowLevelComplete(ScreenManager ScreenManager, PlayerIndex? ControllingPlayer, int score)
+        {
+            levelComplete = new LevelCompleteBox("Level Complete!" + Environment.NewLine + "Score: " + score.ToString());
+
+            ScreenManager.AddScreen(levelComplete, ControllingPlayer);
+        }
+
+        public static LevelMenu[] AllLevels;
+
+        public static LevelMenu[] GetAllLevels(ContentManager content)
+        {
+            if(AllLevels == null)
+            AllLevels = content.Load<LevelMenu[]>("Levels");
+
+            return AllLevels;
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace RonaldTheSnake.SnakeObjects
         
         public SnakeDirection Direction { get; set; }
         public SnakeDirection PreviousDirection { get; set; }
+        public Point PreviousPosition { get; set; }
         public int SnakeBodyIndex { get; set; }
         SnakeBody Body { get; set; }
 
