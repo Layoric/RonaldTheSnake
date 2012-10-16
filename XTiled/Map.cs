@@ -52,7 +52,7 @@ namespace FuncWorks.XNA.XTiled {
         public Int32 Height;
         /// <summary>
         /// Pixel width of a single tile
-        /// </summary>
+        /// </summary>`
         public Int32 TileWidth;
         /// <summary>
         /// Pixel height of a single tile

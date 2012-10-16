@@ -20,4 +20,12 @@ namespace RonaldTheSnake
         Puzzle,
         Timed
     }
+
+    public enum SnakeFoodType
+    {
+        Cherry = 0,
+        Banana,
+        Apple,
+        Strawberry
+    }
 }

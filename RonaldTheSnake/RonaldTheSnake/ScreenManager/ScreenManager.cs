@@ -43,7 +43,6 @@ namespace RonaldTheSnake.Screens
         SpriteFont font;
         Texture2D blankTexture;
 
-        public Thread LoadingThread;
         public delegate void LoadGameAsyncDelegate(string fileName);
 
         bool isInitialized;

@@ -9,8 +9,8 @@
     <ProjectGuid>{803A1C16-988B-4B2F-989B-A94B1C8A3364}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RonaldTheSnake.Win8</RootNamespace>
-    <AssemblyName>RonaldTheSnake.Win8</AssemblyName>
+    <RootNamespace>RonaldTheSnake</RootNamespace>
+    <AssemblyName>RonaldTheSnake</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -100,42 +100,127 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="..\RonaldTheSnake\RonaldTheSnake\Level1.xml">
+      <Link>Level1.xml</Link>
+    </Content>
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Enums.cs" />
-    <Compile Include="Factories\SnakeFactory.cs" />
-    <Compile Include="Game1.cs" />
-    <Compile Include="GameplayScreen.cs" />
-    <Compile Include="LoadingScreen.cs" />
-    <Compile Include="MainMenuScreen.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Enums.cs">
+      <Link>Enums.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Factories\SnakeFactory.cs">
+      <Link>Factories\SnakeFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Factories\SnakeFoodFactory.cs">
+      <Link>Factories\SnakeFoodFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Game1.cs">
+      <Link>Game1.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Program.cs">
+      <Link>Program.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\ScreenManager\InputState.cs">
+      <Link>ScreenManager\InputState.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\ScreenManager\PlayerIndexEventArgs.cs">
+      <Link>ScreenManager\PlayerIndexEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\ScreenManager\ScreenManager.cs">
+      <Link>ScreenManager\ScreenManager.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\BackgroundScreen.cs">
+      <Link>Screens\BackgroundScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\GameOverBox.cs">
+      <Link>Screens\GameOverBox.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\GameplayScreen.cs">
+      <Link>Screens\GameplayScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\GameScreen.cs">
+      <Link>Screens\GameScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\LevelChoiceMenuScreen.cs">
+      <Link>Screens\LevelChoiceMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\LevelCompleteBox.cs">
+      <Link>Screens\LevelCompleteBox.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\LevelMenuEntry.cs">
+      <Link>Screens\LevelMenuEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\LoadingScreen.cs">
+      <Link>Screens\LoadingScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\MainMenuScreen.cs">
+      <Link>Screens\MainMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\MenuEntry.cs">
+      <Link>Screens\MenuEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\MenuScreen.cs">
+      <Link>Screens\MenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\MessageBoxScreen.cs">
+      <Link>Screens\MessageBoxScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\OptionsMenuScreen.cs">
+      <Link>Screens\OptionsMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\PlayModeMenuScreen.cs">
+      <Link>Screens\PlayModeMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\PuzzleModeMenuScreen.cs">
+      <Link>Screens\PuzzleModeMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\SnakeHelper.cs">
+      <Link>SnakeHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\SnakeObjects\SnakeBlock.cs">
+      <Link>SnakeObjects\SnakeBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\SnakeObjects\SnakeBody.cs">
+      <Link>SnakeObjects\SnakeBody.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\SnakeObjects\SnakeFood.cs">
+      <Link>SnakeObjects\SnakeFood.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\SnakeObjects\SnakePlayer.cs">
+      <Link>SnakeObjects\SnakePlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Templates\FoodTemplates\CherryFoodTemplate.cs">
+      <Link>Templates\FoodTemplates\CherryFoodTemplate.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Templates\ISnakeFoodTemplate.cs">
+      <Link>Templates\ISnakeFoodTemplate.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Templates\ISnakeTemplate.cs">
+      <Link>Templates\ISnakeTemplate.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Templates\SnakeDefaultTemplate.cs">
+      <Link>Templates\SnakeDefaultTemplate.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\World\GridMap.cs">
+      <Link>World\GridMap.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\World\SnakeLevel.cs">
+      <Link>World\SnakeLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\World\SnakeWorld.cs">
+      <Link>World\SnakeWorld.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScreenManager\BackgroundScreen.cs" />
-    <Compile Include="ScreenManager\GameOverBox.cs" />
-    <Compile Include="ScreenManager\GameScreen.cs" />
-    <Compile Include="ScreenManager\InputState.cs" />
-    <Compile Include="ScreenManager\MenuEntry.cs" />
-    <Compile Include="ScreenManager\MenuScreen.cs" />
-    <Compile Include="ScreenManager\MessageBoxScreen.cs" />
-    <Compile Include="ScreenManager\OptionsMenuScreen.cs" />
-    <Compile Include="ScreenManager\PlayerIndexEventArgs.cs" />
-    <Compile Include="ScreenManager\ScreenManager.cs" />
-    <Compile Include="SnakeHelper.cs" />
-    <Compile Include="SnakeObjects\MapPickup.cs" />
-    <Compile Include="SnakeObjects\SnakeBlock.cs" />
-    <Compile Include="SnakeObjects\SnakeBody.cs" />
-    <Compile Include="SnakeObjects\SnakePlayer.cs" />
-    <Compile Include="Templates\ISnakeTemplate.cs" />
-    <Compile Include="Templates\SnakeDefaultTemplate.cs" />
-    <Compile Include="World\GridMap.cs" />
-    <Compile Include="World\SnakeWorld.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\MonoGame\MonoGame.Framework\MonoGame.Framework.Windows8.csproj">
       <Project>{0518563c-acca-4a14-8c5d-ddbe93e2605f}</Project>
       <Name>MonoGame.Framework.Windows8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RonaldTheSnake.CustomDataTypes.Win8\RonaldTheSnake.CustomDataTypes.csproj">
+      <Project>{00b629a3-f4bb-43d1-860b-d8221aef6930}</Project>
+      <Name>RonaldTheSnake.CustomDataTypes</Name>
     </ProjectReference>
     <ProjectReference Include="..\XTiled.Win8\XTiled.Win8.csproj">
       <Project>{f6c9a222-7688-412a-9b0d-f3b74d3e77dc}</Project>
@@ -143,12 +228,32 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\2_preview.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\3_preview.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\4_preview.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\5_preview.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\6_preview.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\7_preview.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Content\background.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Content\blank.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Content\cherry.xnb" />
+    <None Include="Content\gamebackground.xnb" />
     <None Include="Content\gamefont.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -158,7 +263,45 @@
     <None Include="Content\gradient.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Content\level1.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\level1\00.xnb" />
+    <None Include="Content\level2.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\level2\00.xnb" />
+    <None Include="Content\level2_preview.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\level3.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\level3\00.xnb" />
+    <None Include="Content\level4.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\level4\00.xnb" />
+    <None Include="Content\level5.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\level5\00.xnb" />
+    <None Include="Content\level6.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\level6\00.xnb" />
+    <None Include="Content\level7.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\level7\00.xnb" />
+    <None Include="Content\Levels.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Content\menufont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\menu\border2pixel.xnb" />
+    <None Include="Content\scorefont.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Content\snakeblock.xnb">
@@ -179,7 +322,18 @@
     <None Include="Content\test1\00.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Content\text1_preview.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\tutorial.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\tutorial\00.xnb" />
+    <None Include="Content\tutorial_preview.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>

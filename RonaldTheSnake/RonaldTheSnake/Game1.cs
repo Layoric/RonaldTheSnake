@@ -27,8 +27,9 @@ namespace RonaldTheSnake
             //Set the Windows Phone screen resolution
             graphics.PreferredBackBufferWidth = 1376;
             graphics.PreferredBackBufferHeight = 768;
-            graphics.IsFullScreen = false;
-            
+
+            //graphics.IsFullScreen = false;
+
 
             Content.RootDirectory = "Content";
 

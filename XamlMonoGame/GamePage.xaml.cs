@@ -26,7 +26,7 @@ namespace XamlMonoGame
 
         void myAd_Loaded(object sender, RoutedEventArgs e)
         {
-            _game.MyFocus();
+            //_game.MyFocus();
         }
 
         void _game_Exiting(object sender, System.EventArgs e)

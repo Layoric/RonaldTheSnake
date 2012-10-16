@@ -13,12 +13,12 @@ using RonaldTheSnake.Screens;
 using Microsoft.Xna.Framework.Input;
 using System.Xml.Serialization;
 using System.IO;
+using RonaldTheSnake.Templates.FoodTemplates;
 
 namespace RonaldTheSnake.World
 {
     public class SnakeWorld : GameScreen
     {
-        Point offset;
         public SnakeLevel CurrentLevel { get; set; }
         public List<SnakePlayer> Players = new List<SnakePlayer>();
         public string TiledMapName { get; set; }
@@ -32,6 +32,12 @@ namespace RonaldTheSnake.World
         SpriteFont scoreFont;
         public bool worldReset = false;
         public bool levelComplete = false;
+        public Texture2D gameBackground;
+
+        public Texture2D cherryFood;
+        public Texture2D bananaFood;
+        public Texture2D appleFood;
+        public Texture2D strawberryFood;
          
 
         public SnakeWorld(string levelName)
@@ -42,9 +48,8 @@ namespace RonaldTheSnake.World
         public void Intialize()
         {
             SnakeFactory.RegisterTemplate("default", new SnakeDefaultTemplate(ScreenManager));
-            offset = new Point((ScreenManager.Game.GraphicsDevice.DisplayMode.Width - 1024) / 2,
-                                (ScreenManager.Game.GraphicsDevice.DisplayMode.Height - 576) / 4);
 
+            SnakeFoodFactory.RegisterTemplate("cherry", new CherryFoodTemplate(ScreenManager));
             Players.Clear();
             //SnakeLevel levelSerialized = new SnakeLevel();
             //levelSerialized.IsCollectLimited = true;
@@ -71,13 +76,20 @@ namespace RonaldTheSnake.World
             Intialize();
             ContentManager content = ScreenManager.Game.Content;
             Players.Add(SnakeFactory.CreateFromTemplate("default"));
+            
             gameFont = ScreenManager.Game.Content.Load<SpriteFont>("gamefont");
             scoreFont = ScreenManager.Game.Content.Load<SpriteFont>("scorefont");
+            gameBackground = ScreenManager.Game.Content.Load<Texture2D>("gamebackground");
+            cherryFood = ScreenManager.Game.Content.Load<Texture2D>("cherry");
+            bananaFood = ScreenManager.Game.Content.Load<Texture2D>("bananas");
             tiledMap = content.Load<Map>(TiledMapName);
-            SnakeHelper.Init(ScreenManager.GraphicsDevice);
+            
+            SnakeHelper.Init(ScreenManager.GraphicsDevice, tiledMap);
             tiledMap.Offset = SnakeHelper.offset;
-            map = new GridMap(tiledMap);
             CurrentLevel = new SnakeLevel(tiledMap);
+
+            //GridMap needs to be last due to reliance on Map and SnakeLevel
+            map = new GridMap(CurrentLevel);
         }
 
         
@@ -94,25 +106,20 @@ namespace RonaldTheSnake.World
                 }
 
                 CheckTimeRemaining();
-
+                CheckDisplayEndScreen();
                 CheckCollectedRemaining();
 
-                
-
                 map.Update(gameTime);
-
-            }
-
-            CheckDisplayEndScreen();
-
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+                
+                //base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            }   
         }
 
         private void CheckCollectedRemaining()
         {
             if (CurrentLevel.IsCollectLimited)
             {
-                if (CurrentLevel.FoodRequired <= Players[0].TotalFoodCollected)
+                if (CurrentLevel.FoodRequired <= Players[0].TotalFoodCollected && !levelComplete)
                 {
                     levelComplete = true;
                 }
@@ -131,6 +138,7 @@ namespace RonaldTheSnake.World
             if (levelComplete)
             {
                 SnakeHelper.ShowLevelComplete(ScreenManager, ControllingPlayer, Players[0].Score);
+                levelComplete = false;
             }
         }
 
@@ -207,7 +215,8 @@ namespace RonaldTheSnake.World
 
                 if (currentTile != null && currentTile.Properties.Count > 0 && currentTile.Properties.Keys.Contains("Wall"))
                 {
-                    worldReset = true;
+                    if(!worldReset)
+                        worldReset = true;
                 }
                 if (currentCell != null && currentCell.ContainsPickup)
                 {
@@ -216,7 +225,8 @@ namespace RonaldTheSnake.World
 
                 if (HasPlayerHitSelf(player))
                 {
-                    worldReset = true;
+                    if (!worldReset)
+                        worldReset = true;
                 }
             
         }
@@ -243,7 +253,8 @@ namespace RonaldTheSnake.World
             }
             else
             {
-                worldReset = true;
+                if (!worldReset)
+                    worldReset = true;
             }
         }
 
@@ -274,13 +285,14 @@ namespace RonaldTheSnake.World
 
         public override void Draw(GameTime gameTime)
         {
+
             ScreenManager.SpriteBatch.Begin();
 
 
             Vector2 origin = new Vector2(Players[0].Body.Texture.Width / 2, Players[0].Body.Texture.Height / 2);
             int x = 0;
-            
-            tiledMap.Draw(ScreenManager.SpriteBatch, new Rectangle(0, 0, 1024, 576));
+            ScreenManager.SpriteBatch.Draw(gameBackground, Vector2.Zero, Color.White);
+            tiledMap.Draw(ScreenManager.SpriteBatch, tiledMap.Bounds);
 
             foreach (var cell in map.Cells)
             {
@@ -291,11 +303,11 @@ namespace RonaldTheSnake.World
                     int cellY = x / map.Width;
                     int cellX = x % map.Width;
 
-                    ScreenManager.SpriteBatch.Draw(Players[0].Body.Texture, SnakeHelper.MapToScreen(new Point(cellX, cellY),
-                        Players[0].Body.Texture, ScreenManager.GraphicsDevice),
-                    Players[0].Body.Source,
+                    ScreenManager.SpriteBatch.Draw(cell.Pickup.Texture, SnakeHelper.MapToScreen(cell.Pickup.Position,
+                        cell.Pickup.Texture, ScreenManager.GraphicsDevice),
+                    cell.Pickup.Texture.Bounds,
                     Color.White,
-                    MathHelper.ToRadians(180f),
+                    MathHelper.ToRadians(0f),
                     origin,
                     1.0f,
                     SpriteEffects.None,

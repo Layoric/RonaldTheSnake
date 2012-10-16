@@ -5,7 +5,6 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
-using System.IO.IsolatedStorage;
 using System.IO;
 using Microsoft.Xna.Framework.Input;
 
@@ -16,7 +15,7 @@ namespace RonaldTheSnake.Screens
 {
     class GameplayScreen : GameScreen
     {
-        SnakeWorld world;
+        //SnakeWorld world;
         MessageBoxScreen msg;
 
         public GameplayScreen()
@@ -66,20 +65,20 @@ namespace RonaldTheSnake.Screens
         {
             float elapsedSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (IsActive)
-            {
-                //world.Update(gameTime);
-                //gameplayHelper.Update(elapsedSeconds);
-            }
-            if (world.worldReset)
-            {
-                if (msg == null)
-                    msg = new GameOverBox("You died!!");
+            //if (IsActive)
+            //{
+            //    //world.Update(gameTime);
+            //    //gameplayHelper.Update(elapsedSeconds);
+            //}
+            //if (world.worldReset)
+            //{
+            //    if (msg == null)
+            //        msg = new GameOverBox("You died!!");
 
-                ScreenManager.AddScreen(msg, ControllingPlayer);
-                world.worldReset = false;
+            //    ScreenManager.AddScreen(msg, ControllingPlayer);
+            //    world.worldReset = false;
                 
-            }
+            //}
 
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
@@ -92,7 +91,7 @@ namespace RonaldTheSnake.Screens
         {
             float elapsedSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            world.Draw(gameTime);
+            //world.Draw(gameTime);
             //gameplayHelper.Draw(elapsedSeconds);
         }        
 

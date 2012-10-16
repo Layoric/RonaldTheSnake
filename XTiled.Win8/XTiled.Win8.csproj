@@ -99,20 +99,46 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="LayerList.cs" />
-    <Compile Include="Line.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="MapObject.cs" />
-    <Compile Include="MapReader.cs" />
-    <Compile Include="ObjectLayer.cs" />
-    <Compile Include="Polygon.cs" />
-    <Compile Include="Polyline.cs" />
+    <Compile Include="..\XTiled\LayerList.cs">
+      <Link>LayerList.cs</Link>
+    </Compile>
+    <Compile Include="..\XTiled\Line.cs">
+      <Link>Line.cs</Link>
+    </Compile>
+    <Compile Include="..\XTiled\Map.cs">
+      <Link>Map.cs</Link>
+    </Compile>
+    <Compile Include="..\XTiled\MapObject.cs">
+      <Link>MapObject.cs</Link>
+    </Compile>
+    <Compile Include="..\XTiled\MapReader.cs">
+      <Link>MapReader.cs</Link>
+    </Compile>
+    <Compile Include="..\XTiled\ObjectLayer.cs">
+      <Link>ObjectLayer.cs</Link>
+    </Compile>
+    <Compile Include="..\XTiled\Polygon.cs">
+      <Link>Polygon.cs</Link>
+    </Compile>
+    <Compile Include="..\XTiled\Polyline.cs">
+      <Link>Polyline.cs</Link>
+    </Compile>
+    <Compile Include="..\XTiled\Property.cs">
+      <Link>Property.cs</Link>
+    </Compile>
+    <Compile Include="..\XTiled\Tile.cs">
+      <Link>Tile.cs</Link>
+    </Compile>
+    <Compile Include="..\XTiled\TileData.cs">
+      <Link>TileData.cs</Link>
+    </Compile>
+    <Compile Include="..\XTiled\TileLayer.cs">
+      <Link>TileLayer.cs</Link>
+    </Compile>
+    <Compile Include="..\XTiled\Tileset.cs">
+      <Link>Tileset.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Property.cs" />
-    <Compile Include="Tile.cs" />
-    <Compile Include="TileData.cs" />
-    <Compile Include="TileLayer.cs" />
-    <Compile Include="Tileset.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\MonoGame\MonoGame.Framework\MonoGame.Framework.Windows8.csproj">

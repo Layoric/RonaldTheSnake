@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="32" height="18" tilewidth="32" tileheight="32">
  <properties>
+  <property name="FoodAddsSpeed" value="true"/>
   <property name="FoodRequired" value="5"/>
-  <property name="FoodSpeed" value="true"/>
   <property name="FoodSpeedInc" value="10"/>
   <property name="FoodVanish" value="true"/>
   <property name="FoodVanishTime" value="4"/>

@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="Enums.cs" />
     <Compile Include="Factories\SnakeFactory.cs" />
+    <Compile Include="Factories\SnakeFoodFactory.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />
     <Compile Include="Screens\LevelChoiceMenuScreen.cs" />
     <Compile Include="Screens\LevelCompleteBox.cs" />
@@ -104,6 +105,8 @@
     <Compile Include="SnakeObjects\SnakeBlock.cs" />
     <Compile Include="SnakeObjects\SnakeBody.cs" />
     <Compile Include="SnakeObjects\SnakePlayer.cs" />
+    <Compile Include="Templates\FoodTemplates\CherryFoodTemplate.cs" />
+    <Compile Include="Templates\ISnakeFoodTemplate.cs" />
     <Compile Include="Templates\ISnakeTemplate.cs" />
     <Compile Include="Templates\SnakeDefaultTemplate.cs" />
     <Compile Include="World\GridMap.cs" />
@@ -121,17 +124,18 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\RonandTheSnake.CustomDataTypes\RonandTheSnake.CustomDataTypes.csproj">
+    <ProjectReference Include="..\..\RonandTheSnake.CustomDataTypes\RonaldTheSnake.CustomDataTypes.csproj">
       <Project>{6FDDE4F2-9AC1-4034-BAB0-E6F034E067EE}</Project>
-      <Name>RonandTheSnake.CustomDataTypes</Name>
+      <Name>RonaldTheSnake.CustomDataTypes</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\XTiled\XTiled [Windows].csproj">
       <Project>{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}</Project>
       <Name>XTiled [Windows]</Name>
     </ProjectReference>
     <ProjectReference Include="..\RonaldTheSnakeContent\RonaldTheSnakeContent.contentproj">
-      <Name>RonaldTheSnakeContent</Name>
+      <Name>RonaldTheSnakeContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
+      <Project>{E06F890B-D631-4E83-84B0-72EFF43914A2}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

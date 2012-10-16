@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using RonaldTheSnake.Screens;
 using RonandTheSnake.CustomDataTypes;
 using Microsoft.Xna.Framework.Content;
+using FuncWorks.XNA.XTiled;
 
 namespace RonaldTheSnake
 {
@@ -19,12 +20,12 @@ namespace RonaldTheSnake
         public static Point offset;
         static bool init = false;
 
-        public static void Init(GraphicsDevice device)
+        public static void Init(GraphicsDevice device, Map tiledMap)
         {
             if (!init)
             {
-                offset = new Point((device.DisplayMode.Width - 1024) / 2,
-                                (device.DisplayMode.Height - 576) / 4);
+                offset = new Point((device.DisplayMode.Width - (tiledMap.Width * tiledMap.TileWidth)) / 2,
+                                (device.DisplayMode.Height - (tiledMap.Height * tiledMap.TileHeight)) / 4);
             }
         }
 

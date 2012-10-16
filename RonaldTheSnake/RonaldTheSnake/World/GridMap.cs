@@ -6,12 +6,14 @@ using RonaldTheSnake.SnakeObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using FuncWorks.XNA.XTiled;
+using RonaldTheSnake.Factories;
 
 namespace RonaldTheSnake.World
 {
     public class GridMap
     {
         List<MapCell> grid = new List<MapCell>();
+        
 
         List<MapCell> cellsInUse = new List<MapCell>();
         Random randomDropTime = new Random();
@@ -29,12 +31,12 @@ namespace RonaldTheSnake.World
         public int Width { get; set; }
         public int Height { get; set; }
 
-        public GridMap(Map tiledMap)
+        public GridMap(SnakeLevel currentLevel)
         {
             FoodCap = 4;
             FoodCount = 0;
-            Width = tiledMap.Width;
-            Height = tiledMap.Height;
+            Width = currentLevel.TiledMap.Width;
+            Height = currentLevel.TiledMap.Height;
             grid.Capacity = Width * Height;
             for (int x = 0; x < Width; x++)
             {
@@ -48,7 +50,7 @@ namespace RonaldTheSnake.World
                 
             }
 
-            InitCollisionCells(tiledMap);
+            InitCollisionCells(currentLevel.TiledMap);
             
         }
 
@@ -69,6 +71,7 @@ namespace RonaldTheSnake.World
 
         private void GenerateSnakeFood(GameTime gameTime)
         {
+            
             if (foodElapsedTime < 0)
             {
                 if (FoodCount < FoodCap)
@@ -84,8 +87,9 @@ namespace RonaldTheSnake.World
                     if (!cellsInUse.Contains(Cells[yPos * Width + xPos]))
                     {
                         FoodCount++;
-                        pickUp = new SnakeFood(50);
+                        pickUp = SnakeFoodFactory.CreateFromTemplate("cherry");
                         pickUp.Position = new Point(xPos, yPos);
+                        //pickUp.Texture = 
                         mapDrops.Add(pickUp);
                         Cells[yPos * Width + xPos].Pickup = pickUp;
                         foodElapsedTime = randomDropTime.Next(1, 3000);

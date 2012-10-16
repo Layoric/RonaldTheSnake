@@ -11,6 +11,7 @@
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <OutputPath>bin\$(Platform)\$(Configuration)</OutputPath>
     <ContentRootDirectory>Content</ContentRootDirectory>
+    <PlatformTarget Condition=" '$(PlatformTarget)' == '' ">x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -90,9 +91,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\RonandTheSnake.CustomDataTypes\RonandTheSnake.CustomDataTypes.csproj">
+    <ProjectReference Include="..\..\RonaldTheSnakeContentProcessing\RonaldTheSnakeContentProcessing.csproj">
+      <Project>{8466E9DC-1DF5-47AF-9625-C0046EC874E1}</Project>
+      <Name>RonaldTheSnakeContentProcessing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RonandTheSnake.CustomDataTypes\RonaldTheSnake.CustomDataTypes.csproj">
       <Project>{6FDDE4F2-9AC1-4034-BAB0-E6F034E067EE}</Project>
-      <Name>RonandTheSnake.CustomDataTypes</Name>
+      <Name>RonaldTheSnake.CustomDataTypes</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\XTiledExtensions\XTiledExtensions.csproj">
       <Project>{AC3FAE00-C94C-4FE3-969F-232241195224}</Project>
@@ -109,8 +114,8 @@
   <ItemGroup>
     <Compile Include="Levels.xml">
       <Name>Levels</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
+      <Importer>LevelMenuContentImporter</Importer>
+      <Processor>LevelMenuContentProcessor</Processor>
       <SubType>Designer</SubType>
     </Compile>
   </ItemGroup>
@@ -171,6 +176,21 @@
     </Compile>
     <Compile Include="2_preview.png">
       <Name>2_preview</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="gamebackground.png">
+      <Name>gamebackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="cherry.png">
+      <Name>cherry</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="bananas.png">
+      <Name>bananas</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

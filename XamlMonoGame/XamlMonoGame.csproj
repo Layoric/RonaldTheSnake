@@ -107,11 +107,6 @@
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScreenManager\GameScreen.cs" />
-    <Compile Include="ScreenManager\InputState.cs" />
-    <Compile Include="ScreenManager\MenuEntry.cs" />
-    <Compile Include="ScreenManager\MenuScreen.cs" />
-    <Compile Include="ScreenManager\ScreenManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -146,6 +141,10 @@
     <ProjectReference Include="..\..\MonoGame\MonoGame.Framework\MonoGame.Framework.Windows8.csproj">
       <Project>{0518563c-acca-4a14-8c5d-ddbe93e2605f}</Project>
       <Name>MonoGame.Framework.Windows8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RonaldTheSnake.CustomDataTypes.Win8\RonaldTheSnake.CustomDataTypes.csproj">
+      <Project>{00b629a3-f4bb-43d1-860b-d8221aef6930}</Project>
+      <Name>RonaldTheSnake.CustomDataTypes</Name>
     </ProjectReference>
     <ProjectReference Include="..\RonaldTheSnake.Win8\RonaldTheSnake.Win8.csproj">
       <Project>{803a1c16-988b-4b2f-989b-a94b1c8a3364}</Project>
