@@ -87,6 +87,7 @@ namespace RonaldTheSnake
         {
             levelComplete = new LevelCompleteBox("Level Complete!" + Environment.NewLine + "Score: " + score.ToString());
 
+            if(!ScreenManager.GetScreens().Contains(levelComplete))
             ScreenManager.AddScreen(levelComplete, ControllingPlayer);
         }
 

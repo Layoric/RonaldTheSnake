@@ -192,11 +192,12 @@ namespace FuncWorks.XNA.XTiled {
 
                         spriteBatch.Draw(
                             this.Tilesets[this.SourceTiles[this.TileLayers[layerID].Tiles[x][y].SourceID].TilesetID].Texture,
-                            tileTarget,
+                            new Vector2(tileTarget.X,tileTarget.Y),
                             this.SourceTiles[this.TileLayers[layerID].Tiles[x][y].SourceID].Source,
                             this.TileLayers[layerID].OpacityColor,
                             this.TileLayers[layerID].Tiles[x][y].Rotation,
                             this.SourceTiles[this.TileLayers[layerID].Tiles[x][y].SourceID].Origin,
+                            1.0f,
                             this.TileLayers[layerID].Tiles[x][y].Effects,
                             layerDepth);
                     }

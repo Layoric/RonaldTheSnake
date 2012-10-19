@@ -29,8 +29,8 @@ namespace RonaldTheSnake
             graphics.PreferredBackBufferHeight = 768;
 
             //graphics.IsFullScreen = false;
-
-
+            
+            
             Content.RootDirectory = "Content";
 
             // Frame rate is 30 fps by default for Windows Phone.
@@ -49,5 +49,11 @@ namespace RonaldTheSnake
             screenManager.AddScreen(new BackgroundScreen(), null);
             screenManager.AddScreen(new MainMenuScreen(), null);
         }
+
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            base.OnExiting(sender, args);
+        }
+
     }
 }

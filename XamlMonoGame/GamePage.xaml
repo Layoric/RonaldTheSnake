@@ -1,4 +1,5 @@
 ﻿<SwapChainBackgroundPanel
+    x:Name="gameBackgroundPanel"
     xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
     x:Class="XamlMonoGame.GamePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -15,5 +16,6 @@
             Height="90" 
             Margin="0,0,0,0" 
             VerticalAlignment="Bottom" 
+            IsAutoRefreshEnabled="False"
             Width="728"/>
 </SwapChainBackgroundPanel>

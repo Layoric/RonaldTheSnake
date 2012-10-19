@@ -43,6 +43,22 @@ namespace RonaldTheSnake.Screens
         SpriteFont font;
         Texture2D blankTexture;
 
+#if WIN8
+        MetroGameWindow metroGameWindow;
+
+        public MetroGameWindow MetroWindow
+        {
+            get
+            {
+                return metroGameWindow;
+            }
+            set
+            {
+                metroGameWindow = value;
+            }
+        }
+#endif
+
         public delegate void LoadGameAsyncDelegate(string fileName);
 
         bool isInitialized;

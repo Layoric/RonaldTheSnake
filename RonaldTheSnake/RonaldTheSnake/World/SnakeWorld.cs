@@ -19,6 +19,7 @@ namespace RonaldTheSnake.World
 {
     public class SnakeWorld : GameScreen
     {
+
         public SnakeLevel CurrentLevel { get; set; }
         public List<SnakePlayer> Players = new List<SnakePlayer>();
         public string TiledMapName { get; set; }
