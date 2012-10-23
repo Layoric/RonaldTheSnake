@@ -118,6 +118,27 @@
     <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Game1.cs">
       <Link>Game1.cs</Link>
     </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\PostProcessing\BasePostProcess.cs">
+      <Link>PostProcessing\BasePostProcess.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\PostProcessing\BasePostProcessingEffect.cs">
+      <Link>PostProcessing\BasePostProcessingEffect.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\PostProcessing\PostProcessingEffects\CrepuscularRays.cs">
+      <Link>PostProcessing\PostProcessingEffects\CrepuscularRays.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\PostProcessing\PostProcessingManager.cs">
+      <Link>PostProcessing\PostProcessingManager.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\PostProcessing\PostProcess\LightRay.cs">
+      <Link>PostProcessing\PostProcess\LightRay.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\PostProcessing\PostProcess\LightSourceMask.cs">
+      <Link>PostProcessing\PostProcess\LightSourceMask.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\PostProcessing\ScreenQuad.cs">
+      <Link>PostProcessing\ScreenQuad.cs</Link>
+    </Compile>
     <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Program.cs">
       <Link>Program.cs</Link>
     </Compile>
@@ -332,6 +353,9 @@
     <None Include="Content\tutorial_preview.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">

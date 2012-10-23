@@ -196,8 +196,7 @@ namespace FuncWorks.XNA.XTiled {
                             this.SourceTiles[this.TileLayers[layerID].Tiles[x][y].SourceID].Source,
                             this.TileLayers[layerID].OpacityColor,
                             this.TileLayers[layerID].Tiles[x][y].Rotation,
-                            this.SourceTiles[this.TileLayers[layerID].Tiles[x][y].SourceID].Origin,
-                            1.0f,
+                            this.SourceTiles[this.TileLayers[layerID].Tiles[x][y].SourceID].Origin,1.0f,
                             this.TileLayers[layerID].Tiles[x][y].Effects,
                             layerDepth);
                     }

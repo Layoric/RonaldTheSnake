@@ -24,8 +24,8 @@ namespace RonaldTheSnake
         {
             if (!init)
             {
-                offset = new Point((device.DisplayMode.Width - (tiledMap.Width * tiledMap.TileWidth)) / 2,
-                                (device.DisplayMode.Height - (tiledMap.Height * tiledMap.TileHeight)) / 4);
+                offset = new Point((device.PresentationParameters.BackBufferWidth - (tiledMap.Width * tiledMap.TileWidth)) / 2,
+                                (device.PresentationParameters.BackBufferHeight - (tiledMap.Height * tiledMap.TileHeight)) / 4);
             }
         }
 
@@ -59,8 +59,8 @@ namespace RonaldTheSnake
         {
             if (!init)
             {
-                offset = new Point((device.DisplayMode.Width - 1024) / 2,
-                                (device.DisplayMode.Height - 576) / 4);
+                offset = new Point((device.PresentationParameters.BackBufferWidth - 1024) / 2,
+                                (device.PresentationParameters.BackBufferHeight - 576) / 4);
             }
             Vector2 result = new Vector2((point.X * 32) + (texture.Bounds.Width / 2) + offset.X, 
                 (point.Y * 32) + (texture.Bounds.Height / 2) + offset.Y);
@@ -87,8 +87,8 @@ namespace RonaldTheSnake
         {
             levelComplete = new LevelCompleteBox("Level Complete!" + Environment.NewLine + "Score: " + score.ToString());
 
-            if(!ScreenManager.GetScreens().Contains(levelComplete))
-            ScreenManager.AddScreen(levelComplete, ControllingPlayer);
+            if(ScreenManager.GetScreens().Where(x=>x.GetType() == typeof(LevelCompleteBox)).FirstOrDefault() == null)
+                ScreenManager.AddScreen(levelComplete, ControllingPlayer);
         }
 
         public static LevelMenu[] AllLevels;

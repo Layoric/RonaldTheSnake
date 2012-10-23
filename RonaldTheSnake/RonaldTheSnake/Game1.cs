@@ -25,8 +25,16 @@ namespace RonaldTheSnake
             graphics = new GraphicsDeviceManager(this);
 
             //Set the Windows Phone screen resolution
+#if WIN8
             graphics.PreferredBackBufferWidth = 1376;
             graphics.PreferredBackBufferHeight = 768;
+            //graphics.PreferredBackBufferWidth = Window.ClientBounds.Right + 1;
+            //graphics.PreferredBackBufferHeight = Window.ClientBounds.Bottom + 1;
+#else
+            //Default
+            graphics.PreferredBackBufferWidth = 1376;
+            graphics.PreferredBackBufferHeight = 768;
+#endif
 
             //graphics.IsFullScreen = false;
             
@@ -46,6 +54,7 @@ namespace RonaldTheSnake
 
         private void AddInitialScreens()
         {
+            screenManager.screens.Clear();
             screenManager.AddScreen(new BackgroundScreen(), null);
             screenManager.AddScreen(new MainMenuScreen(), null);
         }
