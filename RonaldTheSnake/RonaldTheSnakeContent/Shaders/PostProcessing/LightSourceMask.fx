@@ -2,19 +2,20 @@
 
 float2 lightScreenPosition;
 
-
 float4x4 matVP;
 
 float2 halfPixel;
 
-float SunSize = 1500;
+float SunSize;
 
-sampler2D Scene: register(s0){
+Texture2D <float4> flare;
+
+sampler2D Scene: register(s0)
+{
 	AddressU = Clamp;
-	AddressV = Clamp;
+	AddressV = Clamp;  
 };
 
-texture flare;
 sampler Flare = sampler_state
 {
     Texture = (flare);
@@ -30,14 +31,14 @@ float4 LightSourceMaskPS(float2 texCoord : TEXCOORD0 ) : COLOR0
 	float4 col = 0;
 	
 	// Find the suns position in the world and map it to the screen space.
-		float2 coord;
+	float2 coord;
 		
-		float size = SunSize / 1;
+	float size = SunSize / 1;
 					
-		float2 center = lightScreenPosition;
+	float2 center = lightScreenPosition;
 
-		coord = .5 - (texCoord - center) / size * .5;
-		col += (pow(tex2D(Flare,coord),2) * 1) * 2;						
+	coord = .5 - (texCoord - center) / size * .5;
+	col += (pow(tex2D(Flare,coord),2) * 1) * 2;						
 	
 	
 	return col * tex2D(Scene,texCoord);	
@@ -47,7 +48,7 @@ technique LightSourceMask
 {
 	pass p0
 	{
-		VertexShader = compile vs_2_0 VertexShaderFunction();
-		PixelShader = compile ps_2_0 LightSourceMaskPS();
+		VertexShader = compile vs_4_0 VertexShaderFunction();
+		PixelShader = compile ps_4_0 LightSourceMaskPS();
 	}
 }

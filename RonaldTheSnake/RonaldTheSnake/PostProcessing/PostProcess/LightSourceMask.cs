@@ -37,7 +37,8 @@ namespace RonaldTheSnake
             effect.Parameters["halfPixel"].SetValue(HalfPixel);
             effect.CurrentTechnique = effect.Techniques["LightSourceMask"];
 
-            effect.Parameters["flare"].SetValue(lishsourceTexture);
+            
+            //effect.Parameters["flare"].SetValue(lishsourceTexture);
 
             effect.Parameters["SunSize"].SetValue(lightSize);
             effect.Parameters["lightScreenPosition"].SetValue(lighScreenSourcePos);

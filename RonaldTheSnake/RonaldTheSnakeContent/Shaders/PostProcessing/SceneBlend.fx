@@ -7,7 +7,8 @@ sampler2D Scene: register(s0){
 	AddressV = Mirror;
 };
 
-texture OrgScene;
+texture OrgScene: register(t0);
+
 sampler2D orgScene = sampler_state
 {
 	Texture = <OrgScene>;
@@ -36,8 +37,8 @@ technique Blend
 {
 	pass p0
 	{
-		VertexShader = compile vs_2_0 VertexShaderFunction();
-		PixelShader = compile ps_2_0 BlendPS();
+		VertexShader = compile vs_4_0 VertexShaderFunction();
+		PixelShader = compile ps_4_0 BlendPS();
 	}
 }
 
@@ -45,7 +46,7 @@ technique Aditive
 {
 	pass p0
 	{
-		VertexShader = compile vs_2_0 VertexShaderFunction();
-		PixelShader = compile ps_2_0 AditivePS();
+		VertexShader = compile vs_4_0 VertexShaderFunction();
+		PixelShader = compile ps_4_0 AditivePS();
 	}
 }

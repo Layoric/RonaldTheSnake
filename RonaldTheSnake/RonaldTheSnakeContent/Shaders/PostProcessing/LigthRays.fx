@@ -9,10 +9,10 @@ float4x4 matVP;
 
 float2 halfPixel;
 
-float Density = .5f;
-float Decay = .95f;
-float Weight = 1.0f;
-float Exposure = .15f;
+float Density;
+float Decay;
+float Weight;
+float Exposure;
 
 sampler2D Scene: register(s0){
 	AddressU = Clamp;
@@ -52,7 +52,7 @@ technique LightRayFX
 {
 	pass p0
 	{
-		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 lightRayPS();
+		VertexShader = compile vs_4_0 VertexShaderFunction();
+		PixelShader = compile ps_4_0 lightRayPS();
 	}
 }
