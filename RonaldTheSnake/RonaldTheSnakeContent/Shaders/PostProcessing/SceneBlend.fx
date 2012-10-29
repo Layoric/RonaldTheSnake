@@ -17,7 +17,7 @@ sampler2D orgScene = sampler_state
 };
 
 
-float4 BlendPS(float2 texCoord : TEXCOORD0 ) : COLOR0
+float4 BlendPS(float4 pos : POSITION, float2 texCoord : TEXCOORD0 ) : COLOR0
 {
 	texCoord -= halfPixel;
 	float4 col = tex2D(orgScene,texCoord) * tex2D(Scene,texCoord);
@@ -25,7 +25,7 @@ float4 BlendPS(float2 texCoord : TEXCOORD0 ) : COLOR0
 	return col;
 }
 
-float4 AditivePS(float2 texCoord : TEXCOORD0 ) : COLOR0
+float4 AditivePS(float4 pos : POSITION, float2 texCoord : TEXCOORD0 ) : COLOR0
 {
 	texCoord -= halfPixel;
 	float4 col = tex2D(orgScene,texCoord) + tex2D(Scene,texCoord);
@@ -37,8 +37,8 @@ technique Blend
 {
 	pass p0
 	{
-		VertexShader = compile vs_4_0 VertexShaderFunction();
-		PixelShader = compile ps_4_0 BlendPS();
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 BlendPS();
 	}
 }
 
@@ -46,7 +46,7 @@ technique Aditive
 {
 	pass p0
 	{
-		VertexShader = compile vs_4_0 VertexShaderFunction();
-		PixelShader = compile ps_4_0 AditivePS();
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 AditivePS();
 	}
 }

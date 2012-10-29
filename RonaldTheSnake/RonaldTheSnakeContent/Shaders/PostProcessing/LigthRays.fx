@@ -20,7 +20,7 @@ sampler2D Scene: register(s0){
 };
 
 
-float4 lightRayPS( float2 texCoord : TEXCOORD0 ) : COLOR0
+float4 lightRayPS(float4 pos : POSITION, float2 texCoord : TEXCOORD0 ) : COLOR0
 {
 	// Find light pixel position
 	
@@ -52,7 +52,7 @@ technique LightRayFX
 {
 	pass p0
 	{
-		VertexShader = compile vs_4_0 VertexShaderFunction();
-		PixelShader = compile ps_4_0 lightRayPS();
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 lightRayPS();
 	}
 }

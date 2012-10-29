@@ -27,6 +27,7 @@ namespace RonaldTheSnake.World
         bool refreshHitCells = true;
         double refreshHitCellTimeLimit = 0;
         GridMap map;
+        float sunSpeed = 0.0001f;
         
         double elapsedTimed = 0;
         SpriteFont gameFont;
@@ -34,6 +35,7 @@ namespace RonaldTheSnake.World
         public bool worldReset = false;
         public bool levelComplete = false;
         public Texture2D gameBackground;
+        public Texture2D midGround;
 
         public Texture2D cherryFood;
         public Texture2D bananaFood;
@@ -59,7 +61,7 @@ namespace RonaldTheSnake.World
 
         int bgCnt;
 
-        
+        ParticleSystem particleSys;
 
         #endregion         
 
@@ -74,6 +76,8 @@ namespace RonaldTheSnake.World
 
             SnakeFoodFactory.RegisterTemplate("cherry", new CherryFoodTemplate(ScreenManager));
             Players.Clear();
+
+            particleSys = new ParticleSystem(ScreenManager.Game.Content, ScreenManager.SpriteBatch);
             //SnakeLevel levelSerialized = new SnakeLevel();
             //levelSerialized.IsCollectLimited = true;
             //levelSerialized.IsFoodSequenced = true;
@@ -103,8 +107,10 @@ namespace RonaldTheSnake.World
             gameFont = ScreenManager.Game.Content.Load<SpriteFont>("gamefont");
             scoreFont = ScreenManager.Game.Content.Load<SpriteFont>("scorefont");
             gameBackground = ScreenManager.Game.Content.Load<Texture2D>("sky_bg");
+            //midGround = ScreenManager.Game.Content.Load<Texture2D>("midground_grasshill");
             cherryFood = ScreenManager.Game.Content.Load<Texture2D>("cherry");
             bananaFood = ScreenManager.Game.Content.Load<Texture2D>("bananas");
+
             tiledMap = content.Load<Map>(TiledMapName);
             
             SnakeHelper.Init(ScreenManager.GraphicsDevice, tiledMap);
@@ -131,9 +137,9 @@ namespace RonaldTheSnake.World
                 SurfaceFormat.Color, 
                 DepthFormat.None);
 
-            AddBackground("cloud1", 1f);
-
-
+            AddBackground("cloud1", 0.5f);
+            AddBackground("midground_grasshill", 0.0f);
+            //AddBackground("midground_fog", 0.0f);
 
         }
 
@@ -178,6 +184,8 @@ namespace RonaldTheSnake.World
                 CheckCollectedRemaining();
 
                 map.Update(gameTime);
+
+                particleSys.Update((float)gameTime.ElapsedGameTime.Milliseconds);
                 
                 base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
             }   
@@ -328,6 +336,10 @@ namespace RonaldTheSnake.World
 
         private void PickupFood(SnakePlayer player, MapCell currentCell)
         {
+            particleSys.CreatePlayerExplosion(SnakeHelper.MapToScreen(
+                player.Head.Position,
+                ScreenManager.Game.Content.Load<Texture2D>("smoke"),
+                ScreenManager.Game.GraphicsDevice));
             player.Score += currentCell.Pickup.PointsValue;
             player.AddSnakeBlock();
             player.Speed += 5;
@@ -357,6 +369,8 @@ namespace RonaldTheSnake.World
             ContentManager content = ScreenManager.Game.Content;
             GraphicsDevice device = ScreenManager.GraphicsDevice;
             elapsedTime = 1000 / gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            
 
             UpdateLightSource();
 
@@ -434,6 +448,8 @@ namespace RonaldTheSnake.World
 
             tiledMap.Draw(ScreenManager.SpriteBatch, tiledMap.Bounds);
 
+
+            particleSys.Draw();
             foreach (var cell in map.Cells)
             {
 
@@ -470,6 +486,8 @@ namespace RonaldTheSnake.World
             //    ScreenManager.SpriteBatch.DrawString(gameFont, "foodX: " + pickUp.Position.X + Environment.NewLine + "foodY: "
             //        + pickUp.Position.Y, new Vector2(640, 150), Color.Red);
             //}
+
+            
 
             ScreenManager.SpriteBatch.DrawString(scoreFont, Players[0].Score.ToString(), new Vector2(
                 ((ScreenManager.GraphicsDevice.PresentationParameters.BackBufferWidth + 1024) / 2) - 50
@@ -547,7 +565,7 @@ namespace RonaldTheSnake.World
         {
             ContentManager content = ScreenManager.Game.Content;
             if (rayPosMovement <= 1.0f)
-                rayPosMovement = rayPosMovement + 0.001f;
+                rayPosMovement = rayPosMovement + sunSpeed;
             else
                 rayPosMovement = 0.0f;
 
@@ -557,7 +575,7 @@ namespace RonaldTheSnake.World
             
             rays.lightTexture = content.Load<Texture2D>("flare4");
 
-            rays.RenderColor = new Color((y * 8) * -1, (y * 4) * -1, (y * 4) * -1);
+            rays.RenderColor = new Color((y * 8) * -1, (y * 6) * -1, (y * 6) * -1);
 
         }
 

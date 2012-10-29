@@ -15,7 +15,7 @@ sampler TextureSampler : register(s0);
 };*/
 
 
-float4 BrightPassPS(float2 texCoord : TEXCOORD0) : COLOR0
+float4 BrightPassPS(float4 pos: POSITION, float2 texCoord : TEXCOORD0) : COLOR0
 {
 	texCoord -= halfPixel;
     // Look up the original image color.
@@ -30,6 +30,6 @@ technique BloomExtract
 {
     pass P0
     {
-        PixelShader = compile ps_4_0 BrightPassPS();
+        PixelShader = compile ps_3_0 BrightPassPS();
     }
 }

@@ -42,10 +42,6 @@ Content\level6.xnb
 Content\level7.xnb
 Content\level1.xnb
 Content\Levels.xnb
-Content\Shaders\PostProcessing\BrightPass.xnb
-Content\Shaders\PostProcessing\LightSourceMask.xnb
-Content\Shaders\PostProcessing\LigthRays.xnb
-Content\Shaders\PostProcessing\SceneBlend.xnb
 Content\test1\00.xnb
 Content\tutorial\00.xnb
 Content\level2\00.xnb
@@ -55,6 +51,13 @@ Content\level5\00.xnb
 Content\level6\00.xnb
 Content\level7\00.xnb
 Content\level1\00.xnb
+Content\Shaders\PostProcessing\BrightPass.xnb
+Content\Shaders\PostProcessing\LightSourceMask.xnb
+Content\Shaders\PostProcessing\LigthRays.xnb
+Content\Shaders\PostProcessing\SceneBlend.xnb
+Content\midground_grasshill.xnb
+Content\midground_fog.xnb
+Content\smoke.xnb
 Content\Shaders\PostProcessing\BrightPass.fx
 Content\Shaders\PostProcessing\PPVertexShader.fxh
 Level1.xml

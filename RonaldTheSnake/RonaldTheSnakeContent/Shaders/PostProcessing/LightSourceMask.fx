@@ -8,7 +8,7 @@ float2 halfPixel;
 
 float SunSize;
 
-Texture2D <float4> flare;
+Texture2D flare;
 
 sampler2D Scene: register(s0)
 {
@@ -18,12 +18,12 @@ sampler2D Scene: register(s0)
 
 sampler Flare = sampler_state
 {
-    Texture = (flare);
+    Texture = <flare>;
     AddressU = CLAMP;
     AddressV = CLAMP;
 };
 
-float4 LightSourceMaskPS(float2 texCoord : TEXCOORD0 ) : COLOR0
+float4 LightSourceMaskPS(float4 pos : POSITION, float2 texCoord : TEXCOORD0 ) : COLOR0
 {
 	texCoord -= halfPixel;
 
@@ -48,7 +48,7 @@ technique LightSourceMask
 {
 	pass p0
 	{
-		VertexShader = compile vs_4_0 VertexShaderFunction();
-		PixelShader = compile ps_4_0 LightSourceMaskPS();
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 LightSourceMaskPS();
 	}
 }

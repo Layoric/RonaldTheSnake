@@ -86,6 +86,7 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Factories\SnakeFactory.cs" />
     <Compile Include="Factories\SnakeFoodFactory.cs" />
+    <Compile Include="ParticleSystem.cs" />
     <Compile Include="PostProcessing\BasePostProcess.cs" />
     <Compile Include="PostProcessing\BasePostProcessingEffect.cs" />
     <Compile Include="PostProcessing\PostProcessingEffects\CrepuscularRays.cs" />

@@ -242,6 +242,16 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="midground_grasshill.png">
+      <Name>midground_grasshill</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="midground_fog.png">
+      <Name>midground_fog</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="scoresprite.xml">
       <Name>scoresprite</Name>
       <Importer>XmlImporter</Importer>
@@ -265,27 +275,32 @@
     <Compile Include="Shaders\PostProcessing\BrightPass.fx">
       <Name>BrightPass</Name>
       <Importer>EffectImporter</Importer>
-      <Processor>MGEffectProcessor</Processor>
+      <Processor>EffectProcessor</Processor>
       <MonoGamePlatform>Windows8</MonoGamePlatform>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Shaders\PostProcessing\LightSourceMask.fx">
       <Name>LightSourceMask</Name>
       <Importer>EffectImporter</Importer>
-      <Processor>MGEffectProcessor</Processor>
+      <Processor>EffectProcessor</Processor>
       <MonoGamePlatform>Windows8</MonoGamePlatform>
     </Compile>
     <Compile Include="Shaders\PostProcessing\LigthRays.fx">
       <Name>LigthRays</Name>
       <Importer>EffectImporter</Importer>
-      <Processor>MGEffectProcessor</Processor>
+      <Processor>EffectProcessor</Processor>
       <MonoGamePlatform>Windows8</MonoGamePlatform>
     </Compile>
     <Compile Include="Shaders\PostProcessing\SceneBlend.fx">
       <Name>SceneBlend</Name>
       <Importer>EffectImporter</Importer>
-      <Processor>MGEffectProcessor</Processor>
+      <Processor>EffectProcessor</Processor>
       <MonoGamePlatform>Windows8</MonoGamePlatform>
+    </Compile>
+    <Compile Include="smoke.png">
+      <Name>smoke</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
