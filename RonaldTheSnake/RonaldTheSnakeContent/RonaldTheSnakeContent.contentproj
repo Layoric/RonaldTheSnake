@@ -252,6 +252,26 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="diamon_grey.png">
+      <Name>diamon_grey</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="diamon_grey1.png">
+      <Name>diamon_grey1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="diamon_grey2.png">
+      <Name>diamon_grey2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="diamon_white.png">
+      <Name>diamon_white</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="scoresprite.xml">
       <Name>scoresprite</Name>
       <Importer>XmlImporter</Importer>

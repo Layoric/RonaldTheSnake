@@ -32,7 +32,7 @@ namespace RonaldTheSnake
 
         Dictionary<string, Texture2D> textureDictionary;
 
-        Vector2 gravity = new Vector2(0.0f, 0.05f);
+        Vector2 gravity = new Vector2(0.0f, 0.0f);
 
         /// <summary>
         /// This constructor should only be used by the XML serializer.
@@ -67,7 +67,10 @@ namespace RonaldTheSnake
             //textureDictionary["tank_tire"] = content.Load<Texture2D>("tank_tire");
             //textureDictionary["tank_top"] = content.Load<Texture2D>("tank_top");
             //textureDictionary["fire"] = content.Load<Texture2D>("fire");
-            textureDictionary["smoke"] = content.Load<Texture2D>("smoke");
+            textureDictionary["diamon_white"] = content.Load<Texture2D>("diamon_white");
+            textureDictionary["diamon_grey"] = content.Load<Texture2D>("diamon_grey");
+            textureDictionary["diamon_grey1"] = content.Load<Texture2D>("diamon_grey1");
+            textureDictionary["diamon_grey2"] = content.Load<Texture2D>("diamon_grey2");
         }
 
         /// <summary>
@@ -164,22 +167,87 @@ namespace RonaldTheSnake
         {
             Particle p = null;
 
+            float life = 500f;
+            float scaleofFace = 0.25f;
+
+            //Create circle
             for (int i = 0; i < 16; ++i)
             {
                 p = CreateParticle();
                 p.Position = position;
                 p.RotationRate = -6.0f + 12.0f * (float)random.NextDouble();
-                p.Scale = 0.05f;
+                p.Scale = 1.2f;
                 p.ScaleRate = 0.0005f;// *(float)random.NextDouble();
-                p.Alpha = 2.0f;
+                p.Alpha = 1.0f;
                 p.AlphaRate = -0.25f;
-                p.Velocity.X = -0.2f + 0.4f * (float)random.NextDouble();
-                p.Velocity.Y = -0.2f + -0.8f * (float)random.NextDouble();
-                p.TextureName = "smoke";
-                p.Texture = textureDictionary[p.TextureName];
-                p.Life = 2000.0f;
+                double radians = (((float)i / 16)) * (Math.PI * 2);
+                p.Velocity.X = (float)Math.Cos(radians) * scaleofFace;
+                p.Velocity.Y = (float)Math.Sin(radians) * scaleofFace;
+                //p.Velocity.X = -0.2f + 0.4f * (float)random.NextDouble();
+                //p.Velocity.Y = -0.2f + -0.8f * (float)random.NextDouble();
+                p.Texture = PickRandomTextureFromDictionary();
+                p.TextureName = p.Texture.Name;
+                p.Life = life;
                 p.Color = new Color((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
             }
+
+            //create eyes
+            for (int i = 0; i < 2; i++)
+            {
+                p = CreateParticle();
+                p.Position = position;
+                p.RotationRate = -6.0f + 12.0f * (float)random.NextDouble();
+                p.Scale = 1.2f;
+                p.ScaleRate = 0.0005f;// *(float)random.NextDouble();
+                p.Alpha = 1.0f;
+                p.AlphaRate = -0.25f;
+                double radians;
+                if (i == 0)
+                    radians = 4;
+                else
+                    radians = 5.5f;
+
+                p.Velocity.X = 0.8f * (float)Math.Cos(radians) * scaleofFace;
+                p.Velocity.Y = 0.6f * (float)Math.Sin(radians) * scaleofFace;
+                p.Texture = PickRandomTextureFromDictionary();
+                p.TextureName = p.Texture.Name;
+                p.Life = life;
+                p.Color = new Color((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+            }
+
+            for (int i = 0; i < 8; i++)
+            {
+                p = CreateParticle();
+                p.Position = position;
+                p.RotationRate = -6.0f + 12.0f * (float)random.NextDouble();
+                p.Scale = 1.2f;
+                p.ScaleRate = 0.0005f;// *(float)random.NextDouble();
+                p.Alpha = 1.0f;
+                p.AlphaRate = -0.25f;
+                double radians = (((float)i / 16)) * (Math.PI * 2);
+                p.Velocity.X = 0.5f * (float)Math.Cos(radians) * scaleofFace;
+                p.Velocity.Y = 0.5f * (float)Math.Sin(radians) * scaleofFace;
+                //p.Velocity.X = -0.2f + 0.4f * (float)random.NextDouble();
+                //p.Velocity.Y = -0.2f + -0.8f * (float)random.NextDouble();
+                p.Texture = PickRandomTextureFromDictionary();
+                p.TextureName = p.Texture.Name;
+                p.Life = life;
+                p.Color = new Color((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+            }
+        }
+
+        private Texture2D PickRandomTextureFromDictionary()
+        {
+            Texture2D result;
+            List<Texture2D> tempList = new List<Texture2D>();
+            foreach (Texture2D texture in textureDictionary.Values)
+            {
+                tempList.Add(texture);
+            }
+
+            result = tempList[random.Next(tempList.Count - 1)];
+
+            return result;
         }
 
         #region IXmlSerializable Members

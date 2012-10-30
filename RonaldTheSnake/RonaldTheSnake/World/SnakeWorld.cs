@@ -122,7 +122,7 @@ namespace RonaldTheSnake.World
 
             ppm = new PostProcessingManager(ScreenManager.Game);
 
-            rays = new CrepuscularRays(ScreenManager.Game, Vector2.One * .5f, "flare4", 0.35f, .97f, .97f, .3f, .20f);
+            rays = new CrepuscularRays(ScreenManager.Game, Vector2.One * .5f, "flare4", 0.35f, .87f, .97f, .3f, .20f);
 
             ppm.AddEffect(rays);
 
@@ -449,7 +449,7 @@ namespace RonaldTheSnake.World
             tiledMap.Draw(ScreenManager.SpriteBatch, tiledMap.Bounds);
 
 
-            particleSys.Draw();
+            
             foreach (var cell in map.Cells)
             {
 
@@ -480,6 +480,8 @@ namespace RonaldTheSnake.World
                 //ScreenManager.SpriteBatch.DrawString(gameFont, "X: " + player.Head.Position.X + Environment.NewLine + "Y: "
                 //    + player.Head.Position.Y, new Vector2(640, 600), Color.White);
             }
+
+            particleSys.Draw();
 
             //if (foodCount == 1)
             //{
