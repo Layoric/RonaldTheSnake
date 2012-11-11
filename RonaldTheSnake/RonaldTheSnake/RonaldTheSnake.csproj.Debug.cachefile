@@ -51,10 +51,6 @@ Content\level5\00.xnb
 Content\level6\00.xnb
 Content\level7\00.xnb
 Content\level1\00.xnb
-Content\Shaders\PostProcessing\BrightPass.xnb
-Content\Shaders\PostProcessing\LightSourceMask.xnb
-Content\Shaders\PostProcessing\LigthRays.xnb
-Content\Shaders\PostProcessing\SceneBlend.xnb
 Content\midground_grasshill.xnb
 Content\midground_fog.xnb
 Content\smoke.xnb
@@ -62,6 +58,10 @@ Content\diamon_grey.xnb
 Content\diamon_grey1.xnb
 Content\diamon_grey2.xnb
 Content\diamon_white.xnb
-Content\Shaders\PostProcessing\BrightPass.fx
+Content\moon.xnb
+Content\Shaders\PostProcessing\BrightPass.xnb
+Content\Shaders\PostProcessing\LightSourceMask.xnb
+Content\Shaders\PostProcessing\LigthRays.xnb
+Content\Shaders\PostProcessing\SceneBlend.xnb
 Content\Shaders\PostProcessing\PPVertexShader.fxh
 Level1.xml

@@ -1,15 +1,19 @@
 #include "PPVertexShader.fxh"
+cbuffer constants : register(b0)
+{
+	float2 halfPixel;
+};
 
-float2 halfPixel;
 
-sampler2D Scene: register(s0){
+Texture2D sceneTexture : register(t0);
+SamplerState Scene: register(s0){
 	AddressU = Mirror;
 	AddressV = Mirror;
 };
 
-texture OrgScene: register(t0);
+Texture2D OrgScene: register(t1);
 
-sampler2D orgScene = sampler_state
+SamplerState orgScene : register(s1)
 {
 	Texture = <OrgScene>;
 	AddressU = CLAMP;
@@ -17,18 +21,18 @@ sampler2D orgScene = sampler_state
 };
 
 
-float4 BlendPS(float4 pos : POSITION, float2 texCoord : TEXCOORD0 ) : COLOR0
+float4 BlendPS(float2 texCoord : TEXCOORD0 ) : COLOR0
 {
 	texCoord -= halfPixel;
-	float4 col = tex2D(orgScene,texCoord) * tex2D(Scene,texCoord);
+	float4 col = OrgScene.Sample(orgScene,texCoord) * sceneTexture.Sample(Scene,texCoord);
 
 	return col;
 }
 
-float4 AditivePS(float4 pos : POSITION, float2 texCoord : TEXCOORD0 ) : COLOR0
+float4 AditivePS(float2 texCoord : TEXCOORD0 ) : COLOR0
 {
 	texCoord -= halfPixel;
-	float4 col = tex2D(orgScene,texCoord) + tex2D(Scene,texCoord);
+	float4 col = OrgScene.Sample(orgScene,texCoord) + sceneTexture.Sample(Scene,texCoord);
 
 	return col;
 }

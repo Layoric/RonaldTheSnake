@@ -55,7 +55,7 @@ namespace RonaldTheSnake
         private void AddInitialScreens()
         {
             screenManager.screens.Clear();
-            screenManager.AddScreen(new BackgroundScreen(), null);
+            screenManager.AddScreen(new BackgroundEnvironmentScreen(), null);
             screenManager.AddScreen(new MainMenuScreen(), null);
         }
 

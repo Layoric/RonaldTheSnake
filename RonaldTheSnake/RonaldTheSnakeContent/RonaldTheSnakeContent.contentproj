@@ -272,6 +272,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="moon.png">
+      <Name>moon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="scoresprite.xml">
       <Name>scoresprite</Name>
       <Importer>XmlImporter</Importer>
@@ -297,7 +302,6 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
       <MonoGamePlatform>Windows8</MonoGamePlatform>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Shaders\PostProcessing\LightSourceMask.fx">
       <Name>LightSourceMask</Name>

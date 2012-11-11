@@ -94,6 +94,7 @@
     <Compile Include="PostProcessing\PostProcess\LightRay.cs" />
     <Compile Include="PostProcessing\PostProcess\LightSourceMask.cs" />
     <Compile Include="PostProcessing\ScreenQuad.cs" />
+    <Compile Include="Screens\BackgroundEnvironmentScreen.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />
     <Compile Include="Screens\LevelChoiceMenuScreen.cs" />
     <Compile Include="Screens\LevelCompleteBox.cs" />

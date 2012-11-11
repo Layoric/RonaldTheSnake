@@ -118,6 +118,9 @@
     <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Game1.cs">
       <Link>Game1.cs</Link>
     </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\ParticleSystem.cs">
+      <Link>ParticleSystem.cs</Link>
+    </Compile>
     <Compile Include="..\RonaldTheSnake\RonaldTheSnake\PostProcessing\BasePostProcess.cs">
       <Link>PostProcessing\BasePostProcess.cs</Link>
     </Compile>
@@ -150,6 +153,9 @@
     </Compile>
     <Compile Include="..\RonaldTheSnake\RonaldTheSnake\ScreenManager\ScreenManager.cs">
       <Link>ScreenManager\ScreenManager.cs</Link>
+    </Compile>
+    <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\BackgroundEnvironmentScreen.cs">
+      <Link>Screens\BackgroundEnvironmentScreen.cs</Link>
     </Compile>
     <Compile Include="..\RonaldTheSnake\RonaldTheSnake\Screens\BackgroundScreen.cs">
       <Link>Screens\BackgroundScreen.cs</Link>

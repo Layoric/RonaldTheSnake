@@ -1,25 +1,24 @@
 // Pixel shader extracts the brighter areas of an image.
 // This is the first step in applying a bloom postprocess.
+cbuffer constants : register(b0)
+{
+	uniform extern float BloomThreshold;
+	float2 halfPixel;
+};
 
-uniform extern float BloomThreshold;
 //uniform extern texture SceneTex;
 
-float2 halfPixel;
-sampler TextureSampler : register(s0);
-/* = sampler_state
-{
-	Texture = <SceneTex>;
-	MinFilter = LINEAR;
-	MagFilter = LINEAR;
-	MipFilter = LINEAR;
-};*/
+Texture2D InputTexture : register(t0);
+SamplerState TextureSampler : register(s0);
 
 
-float4 BrightPassPS(float4 pos: POSITION, float2 texCoord : TEXCOORD0) : COLOR0
+float4 BrightPassPS(float4 pos: SV_POSITION,
+					float4 posScene: SCENE_POSITION, 
+					float2 texCoord : TEXCOORD0) : SV_TARGET
 {
 	texCoord -= halfPixel;
     // Look up the original image color.
-    float4 c = tex2D(TextureSampler, texCoord);
+    float4 c = InputTexture.Sample(TextureSampler, texCoord);
 
     // Adjust it to keep only values brighter than the specified threshold.
     return saturate((c - BloomThreshold) / (1 - BloomThreshold));

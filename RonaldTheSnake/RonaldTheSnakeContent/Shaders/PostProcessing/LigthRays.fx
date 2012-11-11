@@ -2,25 +2,26 @@
 
 #define NUM_SAMPLES 64
 
-float2 lightScreenPosition;
-
-
-float4x4 matVP;
-
-float2 halfPixel;
-
-float Density;
-float Decay;
-float Weight;
-float Exposure;
-
-sampler2D Scene: register(s0){
-	AddressU = Clamp;
-	AddressV = Clamp;
+cbuffer constants : register(b0)
+{
+	float2 lightScreenPosition;
+	float4x4 matVP;
+	float2 halfPixel;
+	float Density;
+	float Decay;
+	float Weight;
+	float Exposure;
 };
 
+Texture2D SceneTexture : register(t0);
+SamplerState SceneSampler : register(s0);
 
-float4 lightRayPS(float4 pos : POSITION, float2 texCoord : TEXCOORD0 ) : COLOR0
+
+float4 lightRayPS(
+				float4 pos : SV_POSITION, 
+				float4 posScene : SCENE_POSITION,
+				float2 texCoord : TEXCOORD0 
+				) : SV_TARGET
 {
 	// Find light pixel position
 	
@@ -31,14 +32,14 @@ float4 lightRayPS(float4 pos : POSITION, float2 texCoord : TEXCOORD0 ) : COLOR0
 
 	DeltaTexCoord = DeltaTexCoord ;
 
-	float3 col = tex2D(Scene,TexCoord);
+	float3 col = SceneTexture.Sample(SceneSampler,TexCoord);
 	float IlluminationDecay = 1.0;
 	float3 Sample;
 	
 	for( int i = 0; i < NUM_SAMPLES; ++i )
 	{
 		TexCoord -= DeltaTexCoord;
-		Sample = tex2D(Scene, TexCoord);
+		Sample = SceneTexture.Sample(SceneSampler, TexCoord);
 		Sample *= IlluminationDecay * Weight;
 		col += Sample;
 		IlluminationDecay *= Decay;			

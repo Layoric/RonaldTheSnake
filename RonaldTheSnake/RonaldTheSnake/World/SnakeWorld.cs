@@ -27,7 +27,7 @@ namespace RonaldTheSnake.World
         bool refreshHitCells = true;
         double refreshHitCellTimeLimit = 0;
         GridMap map;
-        float sunSpeed = 0.0001f;
+        
         
         double elapsedTimed = 0;
         SpriteFont gameFont;
@@ -44,22 +44,7 @@ namespace RonaldTheSnake.World
 
         #region 2D God rays fields
 
-        RenderTarget2D scene;
-
-        double elapsedTime = 0;
-
-        PostProcessingManager ppm;
-        CrepuscularRays rays;
-        float rayPosMovement = 0.0f;
-
-        List<string> backgroundAssets = new List<string>();
-        List<float> bgSpeeds = new List<float>();
-
-        List<Vector2> bgPos = new List<Vector2>();
-        List<Vector2> bgPos2 = new List<Vector2>();
-        List<Vector2> bgPos2Base = new List<Vector2>();
-
-        int bgCnt;
+        
 
         ParticleSystem particleSys;
 
@@ -106,7 +91,7 @@ namespace RonaldTheSnake.World
             
             gameFont = ScreenManager.Game.Content.Load<SpriteFont>("gamefont");
             scoreFont = ScreenManager.Game.Content.Load<SpriteFont>("scorefont");
-            gameBackground = ScreenManager.Game.Content.Load<Texture2D>("sky_bg");
+            //gameBackground = ScreenManager.Game.Content.Load<Texture2D>("sky_bg");
             //midGround = ScreenManager.Game.Content.Load<Texture2D>("midground_grasshill");
             cherryFood = ScreenManager.Game.Content.Load<Texture2D>("cherry");
             bananaFood = ScreenManager.Game.Content.Load<Texture2D>("bananas");
@@ -120,46 +105,6 @@ namespace RonaldTheSnake.World
             //GridMap needs to be last due to reliance on Map and SnakeLevel
             map = new GridMap(CurrentLevel);
 
-            ppm = new PostProcessingManager(ScreenManager.Game);
-
-            rays = new CrepuscularRays(ScreenManager.Game, Vector2.One * .5f, "flare4", 0.35f, .87f, .97f, .3f, .20f);
-
-            ppm.AddEffect(rays);
-
-            ScreenManager.Game.Services.AddService(ScreenManager.SpriteBatch.GetType(), ScreenManager.SpriteBatch);
-
-            UpdateLightSource();
-
-            scene = new RenderTarget2D(ScreenManager.Game.GraphicsDevice, 
-                ScreenManager.Game.GraphicsDevice.Viewport.Width,
-                ScreenManager.Game.GraphicsDevice.Viewport.Height, 
-                false, 
-                SurfaceFormat.Color, 
-                DepthFormat.None);
-
-            AddBackground("cloud1", 0.5f);
-            AddBackground("midground_grasshill", 0.0f);
-            //AddBackground("midground_fog", 0.0f);
-
-        }
-
-        private void LoadAllBackgroundAssets()
-        {
-            foreach (var backgroundAsset in backgroundAssets)
-            {
-                ScreenManager.Game.Content.Load<Texture2D>(backgroundAsset);
-            }
-        }
-
-        public virtual void AddBackground(string bgAsset, float speed)
-        {
-            backgroundAssets.Add(bgAsset);
-            bgSpeeds.Add(speed);
-            bgPos.Add(Vector2.Zero);
-            bgCnt++;
-
-            bgPos2.Add(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width, 0));
-            bgPos2Base.Add(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width, 0));
         }
 
         public override void UnloadContent()
@@ -368,79 +313,7 @@ namespace RonaldTheSnake.World
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             ContentManager content = ScreenManager.Game.Content;
             GraphicsDevice device = ScreenManager.GraphicsDevice;
-            elapsedTime = 1000 / gameTime.ElapsedGameTime.TotalMilliseconds;
-
             
-
-            UpdateLightSource();
-
-            //spriteBatch.Begin();
-
-            //ScreenManager.SpriteBatch.Draw(gameBackground,
-            //    new Rectangle(0, 0, ScreenManager.GraphicsDevice.PresentationParameters.BackBufferWidth
-            //    , ScreenManager.GraphicsDevice.PresentationParameters.BackBufferHeight)
-            //    , gameBackground.Bounds, Color.White, 0.0f,
-            //    Vector2.Zero, SpriteEffects.None, 0.0f
-            //    );
-
-            //spriteBatch.End();
-
-            ScreenManager.GraphicsDevice.SetRenderTarget(scene);
-            ScreenManager.GraphicsDevice.Clear(Color.White);
-
-
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
-
-            LightRaysBackgroundFirstPass(spriteBatch, content, device);
-
-            spriteBatch.End();
-
-            device.SetRenderTarget(null);
-
-            // Apply the post processing maanger (just the rays in this one)
-            ppm.Draw(gameTime, scene);
-
-            // Now blend that source with the scene..
-            device.SetRenderTarget(scene);
-            // Draw the scene in color now
-            device.Clear(Color.Black);
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
-
-            //Draw sky background
-            ScreenManager.SpriteBatch.Draw(gameBackground,
-                new Rectangle(0, 0, ScreenManager.GraphicsDevice.PresentationParameters.BackBufferWidth
-                , ScreenManager.GraphicsDevice.PresentationParameters.BackBufferHeight)
-                , gameBackground.Bounds, Color.White, 0.0f,
-                Vector2.Zero, SpriteEffects.None, 0.0f
-                );
-
-            LightRaysBackgroundDraw(spriteBatch, content, device);
-
-            spriteBatch.End();
-            ScreenManager.GraphicsDevice.SetRenderTarget(null);
-            device.Clear(Color.Black);
-
-            //Draw final scene
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
-
-            spriteBatch.Draw(ppm.Scene, new Rectangle(0, 0, device.Viewport.Width, device.Viewport.Height), Color.White);
-            spriteBatch.Draw(scene, new Rectangle(0, 0, device.Viewport.Width, device.Viewport.Height), Color.White);
-
-            spriteBatch.End();
-
-            //Update background positions
-            for (int b = 0; b < bgCnt; b++)
-            {
-                bgPos[b] -= new Vector2(bgSpeeds[b], 0);
-                bgPos2[b] -= new Vector2(bgSpeeds[b], 0);
-
-                if (bgPos[b].X < -bgPos2Base[b].X)
-                    bgPos[b] = new Vector2(bgPos2[b].X + bgPos2Base[b].X, 0);
-
-                if (bgPos2[b].X < -bgPos2Base[b].X)
-                    bgPos2[b] = new Vector2(bgPos[b].X + bgPos2Base[b].X, 0);
-            }
-
             spriteBatch.Begin();
 
             Vector2 origin = new Vector2(Players[0].Body.Texture.Width / 2, Players[0].Body.Texture.Height / 2);
@@ -511,74 +384,6 @@ namespace RonaldTheSnake.World
 
 
             ScreenManager.SpriteBatch.End();
-        }
-
-        private void LightRaysBackgroundDraw(SpriteBatch spriteBatch, ContentManager content, GraphicsDevice device)
-        {
-            for (int bg = 0; bg < bgCnt; bg++)
-            {
-                spriteBatch.Draw(content.Load<Texture2D>(backgroundAssets[bg]),
-                    new Rectangle((int)bgPos[bg].X,
-                        (int)bgPos[bg].Y,
-                        ScreenManager.GraphicsDevice.Viewport.Width,
-                        device.Viewport.Height),
-                    new Rectangle(0, 0,
-                        content.Load<Texture2D>(backgroundAssets[bg]).Width,
-                        content.Load<Texture2D>(backgroundAssets[bg]).Height),
-                rays.RenderColor);
-                spriteBatch.Draw(content.Load<Texture2D>(backgroundAssets[bg]),
-                    new Rectangle((int)bgPos2[bg].X,
-                        (int)bgPos[bg].Y,
-                        ScreenManager.GraphicsDevice.Viewport.Width,
-                        device.Viewport.Height),
-                    new Rectangle(0, 0,
-                        content.Load<Texture2D>(backgroundAssets[bg]).Width,
-                        content.Load<Texture2D>(backgroundAssets[bg]).Height),
-                    rays.RenderColor);
-            }
-        }
-
-        private void LightRaysBackgroundFirstPass(SpriteBatch spriteBatch, ContentManager content, GraphicsDevice device)
-        {
-            for (int bg = 0; bg < bgCnt; bg++)
-            {
-                spriteBatch.Draw(content.Load<Texture2D>(backgroundAssets[bg]),
-                    new Rectangle((int)bgPos[bg].X,
-                        (int)bgPos[bg].Y,
-                        ScreenManager.GraphicsDevice.Viewport.Width,
-                        device.Viewport.Height),
-                    new Rectangle(0, 0,
-                        content.Load<Texture2D>(backgroundAssets[bg]).Width,
-                        content.Load<Texture2D>(backgroundAssets[bg]).Height),
-                Color.Black);
-                spriteBatch.Draw(content.Load<Texture2D>(backgroundAssets[bg]),
-                    new Rectangle((int)bgPos2[bg].X,
-                        (int)bgPos[bg].Y,
-                        ScreenManager.GraphicsDevice.Viewport.Width,
-                        device.Viewport.Height),
-                    new Rectangle(0, 0,
-                        content.Load<Texture2D>(backgroundAssets[bg]).Width,
-                        content.Load<Texture2D>(backgroundAssets[bg]).Height),
-                    Color.Black);
-            }
-        }
-
-        private void UpdateLightSource()
-        {
-            ContentManager content = ScreenManager.Game.Content;
-            if (rayPosMovement <= 1.0f)
-                rayPosMovement = rayPosMovement + sunSpeed;
-            else
-                rayPosMovement = 0.0f;
-
-            float y = ((rayPosMovement * rayPosMovement) - rayPosMovement);
-            rays.lightSource = new Vector2(rayPosMovement, (y * 4) + 1);
-
-            
-            rays.lightTexture = content.Load<Texture2D>("flare4");
-
-            rays.RenderColor = new Color((y * 8) * -1, (y * 6) * -1, (y * 6) * -1);
-
         }
 
         public override void HandleInput(InputState input)
