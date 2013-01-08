@@ -32,14 +32,14 @@ float4 lightRayPS(
 
 	DeltaTexCoord = DeltaTexCoord ;
 
-	float3 col = SceneTexture.Sample(SceneSampler,TexCoord);
+	float3 col = tex2D(SceneSampler,TexCoord);
 	float IlluminationDecay = 1.0;
 	float3 Sample;
 	
 	for( int i = 0; i < NUM_SAMPLES; ++i )
 	{
 		TexCoord -= DeltaTexCoord;
-		Sample = SceneTexture.Sample(SceneSampler, TexCoord);
+		Sample = tex2D(SceneSampler, TexCoord);
 		Sample *= IlluminationDecay * Weight;
 		col += Sample;
 		IlluminationDecay *= Decay;			

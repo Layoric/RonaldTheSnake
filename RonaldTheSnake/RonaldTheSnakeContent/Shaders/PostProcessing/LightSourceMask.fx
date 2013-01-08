@@ -45,10 +45,10 @@ float4 LightSourceMaskPS(float4 pos : SV_POSITION,
 	float2 center = lightScreenPosition;
 
 	coord = .5 - (texCoord - center) / size * .5;
-	col += (pow(flare.Sample(Flare,coord),2) * 1) * 2;						
+	col += (pow(tex2D(Flare,coord),2) * 1) * 2;						
 	
 	
-	return col * scene.Sample(Scene,texCoord);	
+	return col * tex2D(Scene,texCoord);	
 }
 
 technique LightSourceMask
